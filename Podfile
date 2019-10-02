@@ -8,7 +8,6 @@ target 'MykiLite' do
   # Pods for MykiLite
   
   pod 'RealmSwift'
-#  pod 'Localize-Swift'
   pod 'SDWebImage'
   pod 'CRNotifications'
 
