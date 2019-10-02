@@ -14,17 +14,19 @@ extension PasswordsViewController {
     return viewModel.numberOfCells
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PasswordCellView
-    cell.itemBackView.backgroundColor = .navBar
-    let password = viewModel.getPassword(row: indexPath.row)
-    cell.nicknameLabel.text = password.nickname
-    cell.emailLabel.text = password.username
-    return cell
-  }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PasswordCellView
+        if let password = viewModel.getPassword(row: indexPath.row) {
+            cell.setCell(with: password.nickname, detail: password.username, img: password.url.logoUrl)
+        }
+        return cell
+    }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+    guard let password = viewModel.getPassword(row: indexPath.row) else {
+        return
+    }
+    self.edit(password: password)
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -1,0 +1,33 @@
+/*
+  Localization.strings
+  MykiLite
+
+  Created by Miguel Bou Sleiman on 10/1/19.
+  Copyright © 2019 myki. All rights reserved.
+*/
+
+"Success" = "Succès";
+
+"Your password has been copied to the clipboard!" = "Votre mot de passe a été copié dans le presse-papiers!";
+
+"COPY" = "COPIE";
+
+"Passwords" = "Mots de passe";
+
+"Add Password" = "Ajouter un mot de passe";
+
+"Header" = "Entête";
+
+"Nickname" = "Surnom";
+
+"Username | Email" = "Nom d'utilisateur | Email";
+
+"Password" = "Mot de passe";
+
+"Website" = "Site Internet";
+
+"Error" = "Erreur";
+
+"Confirm" = "Confirmer";
+
+"Dismiss" = "Rejeter";

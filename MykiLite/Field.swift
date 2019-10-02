@@ -8,21 +8,25 @@
 
 import Foundation
 
-struct Field {
-  var title: String
-  var type: FieldTypes
-  var isSecure: Bool
-  var value = ""
-
-  init(title: String, type: FieldTypes, isSecure: Bool) {
-    self.title = title
-    self.type = type
-    self.isSecure = isSecure
-  }
+class Field {
+    var title: String
+    var type: FieldTypes
+    var isSecure: Bool
+    var value = ""
+    var isEditable: Bool
+    var isCopyable: Bool
+    
+    init(title: String, type: FieldTypes, isSecure: Bool, isEditable: Bool, canCopy: Bool) {
+        self.title = title
+        self.type = type
+        self.isSecure = isSecure
+        self.isEditable = isEditable
+        self.isCopyable = canCopy
+    }
 }
 
 enum FieldTypes: Int {
-  case text
-  case password
-  case header
+    case text
+    case password
+    case header
 }
