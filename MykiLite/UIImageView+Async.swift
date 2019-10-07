@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 extension UIImageView {
     
@@ -15,13 +14,18 @@ extension UIImageView {
     
     func loadImg(with url: String, placeholder: UIImage?, completion: @escaping (Error?, UIImage?) -> Void) {
         
+        self.image = placeholder
+        
         guard let url = URL(string: url) else {
-            self.image = placeholder
             return
         }
         
-        self.sd_setImage(with: url, placeholderImage: placeholder, options: []) { (image, error, cacheType, url) in
-            completion(error, image)
+        HTTPRequest.downloadImg(with: url) { (image, error, isFromCache) in
+            if image != nil && error == nil {
+                DispatchQueue.main.async {
+                    self.image = image
+                }
+            }
         }
         
     }
