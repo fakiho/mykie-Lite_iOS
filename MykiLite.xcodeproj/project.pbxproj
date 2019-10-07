@@ -35,6 +35,7 @@
 		AD1D97CB23432E2D007EFD96 /* PasswordsView+SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D97CA23432E2D007EFD96 /* PasswordsView+SearchController.swift */; };
 		AD1D97CF23436FEA007EFD96 /* CommonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D97CE23436FEA007EFD96 /* CommonAlert.swift */; };
 		AD1D97D82343985C007EFD96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1D97D523438F5B007EFD96 /* Localizable.strings */; };
+		AD366C20234B6B6800B461B1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD366C1F234B6B6800B461B1 /* Environment.swift */; };
 		AD83D88823444FB2001FB48A /* EditPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83D88723444FB2001FB48A /* EditPasswordViewModel.swift */; };
 		AD847D072348982000AB8DC2 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD847D062348982000AB8DC2 /* HTTPRequest.swift */; };
 		DC2635CFAEA0133DC3C762EC /* Pods_MykiLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C2FC598DA0FFB15768D31E /* Pods_MykiLite.framework */; };
@@ -92,6 +93,8 @@
 		AD1D97CA23432E2D007EFD96 /* PasswordsView+SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordsView+SearchController.swift"; sourceTree = "<group>"; };
 		AD1D97CE23436FEA007EFD96 /* CommonAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlert.swift; sourceTree = "<group>"; };
 		AD1D97D423438F5B007EFD96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AD366C1D234B69D900B461B1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		AD366C1F234B6B6800B461B1 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		AD83D87F2343D92C001FB48A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD83D8802343DA51001FB48A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD83D88723444FB2001FB48A /* EditPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 		46650F722306935E0084A95B /* MykiLite */ = {
 			isa = PBXGroup;
 			children = (
+				AD366C1E234B69DE00B461B1 /* Config */,
 				AD847D052348960F00AB8DC2 /* HTTPRequest */,
 				AD1D97D02343813B007EFD96 /* Resources */,
 				AD1D97CC23436FD4007EFD96 /* Helpers */,
@@ -289,6 +293,15 @@
 				AD1D97D523438F5B007EFD96 /* Localizable.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		AD366C1E234B69DE00B461B1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AD366C1F234B6B6800B461B1 /* Environment.swift */,
+				AD366C1D234B69D900B461B1 /* Config.xcconfig */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		AD847D052348960F00AB8DC2 /* HTTPRequest */ = {
@@ -531,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46650FEF230693B70084A95B /* PasswordsViewController.swift in Sources */,
+				AD366C20234B6B6800B461B1 /* Environment.swift in Sources */,
 				46650F742306935E0084A95B /* AppDelegate.swift in Sources */,
 				46650FF9230693E30084A95B /* AddPasswordViewController.swift in Sources */,
 				46650FFD230694060084A95B /* UIColor+Extension.swift in Sources */,
@@ -610,6 +624,7 @@
 /* Begin XCBuildConfiguration section */
 		46650F962306935F0084A95B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD366C1D234B69D900B461B1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -672,6 +687,7 @@
 		};
 		46650F972306935F0084A95B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD366C1D234B69D900B461B1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
