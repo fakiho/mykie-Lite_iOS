@@ -42,7 +42,7 @@ class AddPasswordViewModel {
         return fields.count
     }
     
-    init(delegate: UIViewController) {
+    init(delegate: UIViewController?) {
         self.delegate = delegate as? AddPasswordViewModelDelegate
         self.title = "Add Password"
         prepareFields()

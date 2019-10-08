@@ -11,7 +11,6 @@
 		46650F742306935E0084A95B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650F732306935E0084A95B /* AppDelegate.swift */; };
 		46650F7B2306935F0084A95B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46650F7A2306935F0084A95B /* Assets.xcassets */; };
 		46650F7E2306935F0084A95B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46650F7C2306935F0084A95B /* LaunchScreen.storyboard */; };
-		46650F892306935F0084A95B /* MykiLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650F882306935F0084A95B /* MykiLiteTests.swift */; };
 		46650F942306935F0084A95B /* MykiLiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650F932306935F0084A95B /* MykiLiteUITests.swift */; };
 		46650FEC230693B70084A95B /* PasswordsView+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650FE8230693B70084A95B /* PasswordsView+TableView.swift */; };
 		46650FED230693B70084A95B /* PasswordCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650FE9230693B70084A95B /* PasswordCellView.swift */; };
@@ -23,7 +22,6 @@
 		46650FF9230693E30084A95B /* AddPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650FF4230693E30084A95B /* AddPasswordViewController.swift */; };
 		46650FFA230693E30084A95B /* AddPasswordView+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650FF5230693E30084A95B /* AddPasswordView+TableView.swift */; };
 		46650FFD230694060084A95B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650FFC230694060084A95B /* UIColor+Extension.swift */; };
-		46651003230694450084A95B /* PasswordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651000230694450084A95B /* PasswordObject.swift */; };
 		46651004230694450084A95B /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651001230694450084A95B /* Database.swift */; };
 		46651005230694450084A95B /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651002230694450084A95B /* FetchRequest.swift */; };
 		46651009230694580084A95B /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651007230694580084A95B /* Field.swift */; };
@@ -42,6 +40,11 @@
 		AD6C4DE0234C395100B1FC2B /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C4DDF234C395100B1FC2B /* String+MD5.swift */; };
 		AD6C4DE3234C5B7900B1FC2B /* MykiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C4DE2234C5B7900B1FC2B /* MykiRouter.swift */; };
 		AD6C4DE6234C602600B1FC2B /* MykiViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C4DE5234C602600B1FC2B /* MykiViewControllers.swift */; };
+		AD6C4DF9234C764200B1FC2B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD1D97D523438F5B007EFD96 /* Localizable.strings */; };
+		AD6C4E07234C777700B1FC2B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AD366C1D234B69D900B461B1 /* Config.xcconfig */; };
+		AD6C4E08234C777700B1FC2B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AD366C1D234B69D900B461B1 /* Config.xcconfig */; };
+		AD6C4E0A234C788F00B1FC2B /* PasswordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651000230694450084A95B /* PasswordObject.swift */; };
+		AD6C4E0B234C797C00B1FC2B /* MykiLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650F882306935F0084A95B /* MykiLiteTests.swift */; };
 		AD83D88823444FB2001FB48A /* EditPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83D88723444FB2001FB48A /* EditPasswordViewModel.swift */; };
 		AD847D072348982000AB8DC2 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD847D062348982000AB8DC2 /* HTTPManager.swift */; };
 		DC2635CFAEA0133DC3C762EC /* Pods_MykiLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C2FC598DA0FFB15768D31E /* Pods_MykiLite.framework */; };
@@ -359,7 +362,7 @@
 				46650F6C2306935E0084A95B /* Sources */,
 				46650F6D2306935E0084A95B /* Frameworks */,
 				46650F6E2306935E0084A95B /* Resources */,
-				EA780090B6F1196F386C4AE0 /* [CP] Embed Pods Frameworks */,
+				D488EC947F4E13E3930762B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -378,6 +381,7 @@
 				46650F802306935F0084A95B /* Sources */,
 				46650F812306935F0084A95B /* Frameworks */,
 				46650F822306935F0084A95B /* Resources */,
+				E72E7044F2A08007040CEC77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -456,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD6C4E08234C777700B1FC2B /* Config.xcconfig in Resources */,
 				AD1D97D82343985C007EFD96 /* Localizable.strings in Resources */,
 				46650F7E2306935F0084A95B /* LaunchScreen.storyboard in Resources */,
 				46650F7B2306935F0084A95B /* Assets.xcassets in Resources */,
@@ -466,6 +471,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD6C4E07234C777700B1FC2B /* Config.xcconfig in Resources */,
+				AD6C4DF9234C764200B1FC2B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +530,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA780090B6F1196F386C4AE0 /* [CP] Embed Pods Frameworks */ = {
+		D488EC947F4E13E3930762B5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -538,6 +545,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MykiLite/Pods-MykiLite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E72E7044F2A08007040CEC77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MykiLiteTests/Pods-MykiLiteTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MykiLiteTests/Pods-MykiLiteTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MykiLiteTests/Pods-MykiLiteTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EBB105751B1EA20836292944 /* [CP] Check Pods Manifest.lock */ = {
@@ -574,6 +598,7 @@
 				46650F742306935E0084A95B /* AppDelegate.swift in Sources */,
 				46650FF9230693E30084A95B /* AddPasswordViewController.swift in Sources */,
 				46650FFD230694060084A95B /* UIColor+Extension.swift in Sources */,
+				AD6C4E0A234C788F00B1FC2B /* PasswordObject.swift in Sources */,
 				46651005230694450084A95B /* FetchRequest.swift in Sources */,
 				AD6C4DE0234C395100B1FC2B /* String+MD5.swift in Sources */,
 				46651009230694580084A95B /* Field.swift in Sources */,
@@ -581,7 +606,6 @@
 				AD1D97C52341F2F5007EFD96 /* String+Extras.swift in Sources */,
 				AD83D88823444FB2001FB48A /* EditPasswordViewModel.swift in Sources */,
 				46650FEE230693B70084A95B /* PasswordsViewModel.swift in Sources */,
-				46651003230694450084A95B /* PasswordObject.swift in Sources */,
 				AD1D97C923421BD9007EFD96 /* UIImageView+Async.swift in Sources */,
 				AD6C4DE6234C602600B1FC2B /* MykiViewControllers.swift in Sources */,
 				AD1D97C723420197007EFD96 /* AddPasswordViewController+ViewModelDelegate.swift in Sources */,
@@ -606,7 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46650F892306935F0084A95B /* MykiLiteTests.swift in Sources */,
+				AD6C4E0B234C797C00B1FC2B /* MykiLiteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

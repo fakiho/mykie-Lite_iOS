@@ -12,7 +12,7 @@ class EditPasswordViewModel: AddPasswordViewModel {
     
     var isEditing: Bool = false
     
-    override init(delegate: UIViewController) {
+    override init(delegate: UIViewController?) {
         super.init(delegate: delegate)
         self.title = ""
         self.type = .edit
@@ -45,6 +45,9 @@ class EditPasswordViewModel: AddPasswordViewModel {
     }
     
     func deletePassword() {
+        
+        guard password != nil else { return }
+        
         self.delegate?.showAlert(with: "Alert".localized, message: "Are you sure you want to delete this password?", completion: {
             [weak self] in
             database.delete(type: PasswordObject.self, with: self?.password?.uuid ?? "")

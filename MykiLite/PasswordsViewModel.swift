@@ -27,7 +27,7 @@ class PasswordsViewModel {
     private var passwords: [Password]!
     //removed the fetching from the db on everycall, since its an unecessary call to get the same data many times, and instead, i'm updating from the db when needed
     
-    init(delegate: UIViewController) {
+    init(delegate: UIViewController?) {
         self.delegate = delegate as? PasswordsViewModelDelegate
         self.setPasswordObserver()
     }
