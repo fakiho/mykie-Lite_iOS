@@ -23,7 +23,7 @@ enum AddPasswordModelType {
 
 class AddPasswordViewModel {
     
-    var type: AddPasswordModelType?
+    var type: AddPasswordModelType? = .add
     
     weak var delegate: AddPasswordViewModelDelegate?
     

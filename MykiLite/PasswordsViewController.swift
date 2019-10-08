@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PasswordsViewController: UITableViewController {
+class PasswordsViewController: UITableViewController, MykiRouter {
     
     lazy var viewModel: PasswordsViewModel = {
         let _viewModel = PasswordsViewModel(delegate: self)
@@ -39,20 +39,7 @@ class PasswordsViewController: UITableViewController {
     }
     
     @objc func addPassword() {
-        let controller = AddPasswordViewController()
-        let viewModel = AddPasswordViewModel(delegate: controller)
-        viewModel.type = .add
-        controller.viewModel = viewModel
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    func edit(password: Password) {
-        let controller = AddPasswordViewController()
-        let viewModel = EditPasswordViewModel(delegate: controller)
-        viewModel.type = .edit
-        viewModel.updateFields(with: password)
-        controller.viewModel = viewModel
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.push(self.viewModel.getAddPasswordRoute())
     }
     
     func configureNavBar() {

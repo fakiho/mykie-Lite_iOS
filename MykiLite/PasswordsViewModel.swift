@@ -67,4 +67,18 @@ class PasswordsViewModel {
         
     }
     
+    func editPassword(at index: Int) -> MykiViewControllers? {
+        
+        guard let password = self.getPassword(row: index) else {
+            return nil
+        }
+        
+        return MykiViewControllers.addPasswordView(type: .edit, password: password)
+        
+    }
+    
+    func getAddPasswordRoute() -> MykiViewControllers {
+        return MykiViewControllers.addPasswordView(type: .add, password: nil)
+    }
+    
 }

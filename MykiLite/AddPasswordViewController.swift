@@ -8,9 +8,10 @@
 
 import UIKit
 
-class AddPasswordViewController: UITableViewController, UITextFieldDelegate, CommonAlert {
+class AddPasswordViewController: UITableViewController, UITextFieldDelegate, CommonAlert, MykiRouter {
     
     var viewModel: AddPasswordViewModel!
+    
     lazy var btnEditSave: UIButton = {
         let _btnEditSave = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
         _btnEditSave.setTitle("Save".localized, for: .normal)

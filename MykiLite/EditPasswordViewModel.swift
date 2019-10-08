@@ -15,6 +15,7 @@ class EditPasswordViewModel: AddPasswordViewModel {
     override init(delegate: UIViewController) {
         super.init(delegate: delegate)
         self.title = ""
+        self.type = .edit
     }
     
     override func prepareFields() {

@@ -9,11 +9,11 @@
 import UIKit
 
 extension PasswordsViewController {
-
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.numberOfCells
-  }
-
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfCells
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PasswordCellView
         if let password = viewModel.getPassword(row: indexPath.row) {
@@ -21,16 +21,14 @@ extension PasswordsViewController {
         }
         return cell
     }
-
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let password = viewModel.getPassword(row: indexPath.row) else {
-        return
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = self.viewModel.editPassword(at: indexPath.row) else { return }
+        self.push(vc)
     }
-    self.edit(password: password)
-  }
-
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 80
-  }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
 }
