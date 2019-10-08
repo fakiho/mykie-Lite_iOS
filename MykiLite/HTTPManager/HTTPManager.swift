@@ -11,8 +11,46 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 var loadingImgs = [String : Int]()
 
-enum HTTPManagerError: Error {
-    case error
+enum HTTPManagerError: Int, Error {
+    
+    case success = 200
+    case badRequest = 400
+    case unauthorized = 401
+    case forbidden = 403
+    case notFound  = 404
+    case manyRequests = 429
+    case unavailable = 503
+    case error = -1
+    
+    func getMessage() -> String {
+        
+        switch self {
+        case .success:
+            return ""
+            
+        case .badRequest:
+            return "Bad Request!"
+            
+        case .unauthorized:
+            return "Unauthorized!"
+            
+        case .forbidden:
+            return "Forbidden!"
+            
+        case .notFound:
+            return "Not Found!"
+            
+        case .manyRequests:
+            return "Many Request!"
+            
+        case .unavailable:
+            return "Unavailable!"
+            
+        default:
+            return "An error occured, please try again later!"
+        }
+        
+    }
 }
 
 class HTTPManager {
@@ -21,12 +59,25 @@ class HTTPManager {
         
         let task = URLSession.shared.dataTask(with: request.urlRequest) { (data, response, error) in
             
-            guard error == nil else {
+            guard error == nil, let data = data, let response = response as? HTTPURLResponse else {
                 completion(.failure(.error))
                 return
             }
             
+            let error = HTTPManagerError(rawValue: response.statusCode)
             
+            guard error != nil else {
+                completion(.failure(.error))
+                return
+            }
+            
+            guard error != .success else {
+                completion(.failure(error!))
+                return
+            }
+            
+            let responseString = String(decoding: data, as: UTF8.self)
+            completion(.success(responseString))
             
         }
         
