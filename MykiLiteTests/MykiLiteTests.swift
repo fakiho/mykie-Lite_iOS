@@ -99,6 +99,23 @@ class MykiLiteTests: XCTestCase {
     }
     
     func testLeakPassword() {
+        let password = "P@ssw0rd"
+        
+        let viewModel = AddPasswordViewModel(delegate: nil)
+        viewModel.checkIfPasswordLeaked(password: password) { (shouldSave, isLeaked) in
+            XCTAssertTrue(isLeaked)
+        }
+        
+    }
+    
+    func testUnleakedPassword() {
+        
+        let password = "@23Pfdeaidadabhflmgrifwn"
+        
+        let viewModel = AddPasswordViewModel(delegate: nil)
+        viewModel.checkIfPasswordLeaked(password: password) { (shouldSave, isLeaked) in
+            XCTAssertFalse(isLeaked)
+        }
         
     }
     
