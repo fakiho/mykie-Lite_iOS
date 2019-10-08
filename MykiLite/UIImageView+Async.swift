@@ -26,6 +26,7 @@ extension UIImageView {
                     self.image = image
                 }
             }
+            completion(error, image)
         }
         
     }

@@ -29,13 +29,13 @@ class PasswordsViewController: UITableViewController, MykiRouter {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.fetchPasswords()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
         configureView()
+        self.viewModel.fetchPasswords()
     }
     
     @objc func addPassword() {

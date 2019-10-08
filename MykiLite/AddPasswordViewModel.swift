@@ -92,6 +92,7 @@ class AddPasswordViewModel {
                             url: fieldWebsite.value)
         
         database.createOrUpdate(model: password!, with: PasswordObject.init)
+        NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
         self.delegate?.shouldDismissView()
         
     }

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let kPasswordNotification = "DidUpdatePassword"
+
 protocol PasswordsViewModelDelegate: class {
     func reloadView()
 }
@@ -27,6 +29,15 @@ class PasswordsViewModel {
     
     init(delegate: UIViewController) {
         self.delegate = delegate as? PasswordsViewModelDelegate
+        self.setPasswordObserver()
+    }
+    
+    func setPasswordObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdatePasswords(_ :)), name: NSNotification.Name(rawValue: kPasswordNotification), object: nil)
+    }
+    
+    @objc func didUpdatePasswords(_ notification: NSNotification) {
+        self.fetchPasswords()
     }
     
     func fetchPasswords() {
