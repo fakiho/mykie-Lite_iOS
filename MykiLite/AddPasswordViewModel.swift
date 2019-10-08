@@ -83,11 +83,7 @@ class AddPasswordViewModel {
         return true
     }
     
-    func updatePassword() {
-        
-        guard isValid() else { return }
-        
-        self.delegate?.showLoader()
+    private func checkIfPasswordLeaked(completion: @escaping (Bool) -> Void ) {
         
         let request = MykieAppRequests.isPwned(password: fieldPassword.value.md5().substring(to: 5))
         
@@ -100,6 +96,7 @@ class AddPasswordViewModel {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.delegate?.showAlert(with: "Alert", message: error.getMessage(), completion: nil)
+                    completion(false)
                 }
                 
             case .success(let response):
@@ -116,14 +113,21 @@ class AddPasswordViewModel {
                     }
                 }
                 
-                self.savePassword()
+                completion(true)
                 
                 break
-                
             }
-            
         }
+    }
+    
+    func updatePassword() {
+        guard isValid() else { return }
+        self.delegate?.showLoader()
         
+        self.checkIfPasswordLeaked {
+            [unowned self] (shouldSavePass) in
+            self.savePassword()
+        }
         
     }
     
