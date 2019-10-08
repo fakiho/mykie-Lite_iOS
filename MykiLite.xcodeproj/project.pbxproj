@@ -45,6 +45,7 @@
 		AD6C4E08234C777700B1FC2B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AD366C1D234B69D900B461B1 /* Config.xcconfig */; };
 		AD6C4E0A234C788F00B1FC2B /* PasswordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46651000230694450084A95B /* PasswordObject.swift */; };
 		AD6C4E0B234C797C00B1FC2B /* MykiLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46650F882306935F0084A95B /* MykiLiteTests.swift */; };
+		AD6C4E0E234C8CE600B1FC2B /* CommonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C4E0D234C8CE600B1FC2B /* CommonLoader.swift */; };
 		AD83D88823444FB2001FB48A /* EditPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83D88723444FB2001FB48A /* EditPasswordViewModel.swift */; };
 		AD847D072348982000AB8DC2 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD847D062348982000AB8DC2 /* HTTPManager.swift */; };
 		DC2635CFAEA0133DC3C762EC /* Pods_MykiLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C2FC598DA0FFB15768D31E /* Pods_MykiLite.framework */; };
@@ -110,6 +111,7 @@
 		AD6C4DDF234C395100B1FC2B /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		AD6C4DE2234C5B7900B1FC2B /* MykiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MykiRouter.swift; sourceTree = "<group>"; };
 		AD6C4DE5234C602600B1FC2B /* MykiViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MykiViewControllers.swift; sourceTree = "<group>"; };
+		AD6C4E0D234C8CE600B1FC2B /* CommonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonLoader.swift; sourceTree = "<group>"; };
 		AD83D87F2343D92C001FB48A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD83D8802343DA51001FB48A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AD83D88723444FB2001FB48A /* EditPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1D97CE23436FEA007EFD96 /* CommonAlert.swift */,
+				AD6C4E0D234C8CE600B1FC2B /* CommonLoader.swift */,
 			);
 			name = CommonAlert;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				4665100A230694580084A95B /* Password.swift in Sources */,
 				AD6C4DD9234BB4E700B1FC2B /* HTTPRequestBuilder.swift in Sources */,
 				46650FED230693B70084A95B /* PasswordCellView.swift in Sources */,
+				AD6C4E0E234C8CE600B1FC2B /* CommonLoader.swift in Sources */,
 				AD6C4DDD234C2EDE00B1FC2B /* MykieAppRequests.swift in Sources */,
 				46651004230694450084A95B /* Database.swift in Sources */,
 				AD1D97CF23436FEA007EFD96 /* CommonAlert.swift in Sources */,

@@ -4,6 +4,7 @@
 def common_pods
   pod 'RealmSwift'
   pod 'CRNotifications'
+  pod 'ZVProgressHUD'
 end
 
 target 'MykiLite' do

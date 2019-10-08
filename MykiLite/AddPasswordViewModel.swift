@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 protocol AddPasswordViewModelDelegate: class {
+    func showLoader()
+    func hideLoader()
     func reloadView()
     func shouldDismissView()
     func showPopUp(with title: String, message: String)
@@ -85,15 +87,59 @@ class AddPasswordViewModel {
         
         guard isValid() else { return }
         
-        password = Password(uuid: (password?.uuid.isNull() ?? true) ? UUID().uuidString.lowercased() : password!.uuid,
-                            nickname: fieldNickname.value,
-                            username: fieldUsername.value,
-                            password: fieldPassword.value,
-                            url: fieldWebsite.value)
+        self.delegate?.showLoader()
         
-        database.createOrUpdate(model: password!, with: PasswordObject.init)
-        NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
-        self.delegate?.shouldDismissView()
+        let request = MykieAppRequests.isPwned(password: fieldPassword.value.md5().substring(to: 5))
+        
+        HTTPManager.handle(request: request) {
+            [unowned self] (results) -> Void in
+            
+            self.delegate?.hideLoader()
+            
+            switch results {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.delegate?.showAlert(with: "Alert", message: error.getMessage(), completion: nil)
+                }
+                
+            case .success(let response):
+                
+                guard let response = response as? String else {
+                    self.delegate?.showPopUp(with: "Alert", message: "An error has occured, please try again later!")
+                    return
+                }
+                
+                let passwordsArr = response.components(separatedBy: CharacterSet.newlines)
+                if passwordsArr.count > 0 {
+                    DispatchQueue.main.async {
+                        self.delegate?.showPopUp(with: "Alert", message: "Your password has been leaked \(passwordsArr.count)")
+                    }
+                }
+                
+                self.savePassword()
+                
+                break
+                
+            }
+            
+        }
+        
+        
+    }
+    
+    private func savePassword() {
+        
+        DispatchQueue.main.async {
+            self.password = Password(uuid: (self.password?.uuid.isNull() ?? true) ? UUID().uuidString.lowercased() : self.password!.uuid,
+                                     nickname: self.fieldNickname.value,
+                                     username: self.fieldUsername.value,
+                                     password: self.fieldPassword.value,
+                                     url: self.fieldWebsite.value)
+            
+            database.createOrUpdate(model: self.password!, with: PasswordObject.init)
+            NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
+            self.delegate?.shouldDismissView()
+        }
         
     }
     

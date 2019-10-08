@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddPasswordViewController: UITableViewController, UITextFieldDelegate, CommonAlert, MykiRouter {
+class AddPasswordViewController: UITableViewController, UITextFieldDelegate, CommonAlert, MykiRouter, CommonLoader {
     
     var viewModel: AddPasswordViewModel!
     

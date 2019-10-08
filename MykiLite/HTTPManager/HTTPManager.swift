@@ -71,7 +71,7 @@ class HTTPManager {
                 return
             }
             
-            guard error != .success else {
+            guard error == .success else {
                 completion(.failure(error!))
                 return
             }

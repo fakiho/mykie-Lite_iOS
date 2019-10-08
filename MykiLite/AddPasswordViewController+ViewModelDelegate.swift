@@ -10,6 +10,14 @@ import UIKit
 
 extension AddPasswordViewController: AddPasswordViewModelDelegate {
     
+    func showLoader() {
+        self.presentLoader()
+    }
+    
+    func hideLoader() {
+        self.dismissLoader()
+    }
+    
     func shouldDismissView() {
         self.popView(animated: true)
     }

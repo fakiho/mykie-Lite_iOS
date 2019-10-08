@@ -16,13 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let req = MykieAppRequests.isPwned(password: "P@ssword".md5().substring(to: 5))
-        HTTPManager.handle(request: req) { (result) -> Void in
-            
-        }
-        
+        // Override point for customization after application launch
         
         // Initialize the window
         window = UIWindow(frame: UIScreen.main.bounds)
