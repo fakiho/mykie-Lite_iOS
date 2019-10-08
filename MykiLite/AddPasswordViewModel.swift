@@ -83,7 +83,9 @@ class AddPasswordViewModel {
         return true
     }
     
-    private func checkIfPasswordLeaked(completion: @escaping (Bool) -> Void ) {
+    func checkIfPasswordLeaked(completion: @escaping (Bool) -> Void ) {
+        
+        self.delegate?.showLoader()
         
         let request = MykieAppRequests.isPwned(password: fieldPassword.value.md5().substring(to: 5))
         
@@ -121,8 +123,8 @@ class AddPasswordViewModel {
     }
     
     func updatePassword() {
+        
         guard isValid() else { return }
-        self.delegate?.showLoader()
         
         self.checkIfPasswordLeaked {
             [unowned self] (shouldSavePass) in
@@ -131,7 +133,7 @@ class AddPasswordViewModel {
         
     }
     
-    private func savePassword() {
+    func savePassword() {
         
         DispatchQueue.main.async {
             self.password = Password(uuid: (self.password?.uuid.isNull() ?? true) ? UUID().uuidString.lowercased() : self.password!.uuid,
@@ -141,6 +143,7 @@ class AddPasswordViewModel {
                                      url: self.fieldWebsite.value)
             
             database.createOrUpdate(model: self.password!, with: PasswordObject.init)
+            
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
             self.delegate?.shouldDismissView()
         }

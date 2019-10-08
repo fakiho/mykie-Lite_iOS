@@ -10,15 +10,15 @@ import XCTest
 @testable import MykiLite
 
 class MykiLiteTests: XCTestCase {
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -42,9 +42,10 @@ class MykiLiteTests: XCTestCase {
         var viewModel = AddPasswordViewModel(delegate: nil)
         self.addMocPassword(with: &viewModel)
         
-        let newPasswords = database.fetch(with: Password.all)
-        
-        XCTAssertTrue(newPasswords.count == (oldPasswords.count + 1))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let newPasswords = database.fetch(with: Password.all)
+            XCTAssertTrue(newPasswords.count == (oldPasswords.count + 1))
+        }
         
     }
     
@@ -55,7 +56,7 @@ class MykiLiteTests: XCTestCase {
         viewModel.fieldPassword.value = "P@ssw0rd"
         viewModel.fieldWebsite.value  = "gmail.com"
         
-        viewModel.updatePassword()
+        viewModel.savePassword()
     }
     
     func testDeletePasswordEmptyPassword() {
@@ -70,7 +71,7 @@ class MykiLiteTests: XCTestCase {
         XCTAssertFalse(newPasswords.count == (oldPasswords.count - 1))
         
     }
-
+    
     func testDeletePassword() {
         
         let oldPasswords = database.fetch(with: Password.all)
@@ -78,18 +79,26 @@ class MykiLiteTests: XCTestCase {
         var viewModel = AddPasswordViewModel(delegate: nil)
         self.addMocPassword(with: &viewModel)
         
-        let newPasswords = database.fetch(with: Password.all)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            
+            let newPasswords = database.fetch(with: Password.all)
+            
+            XCTAssertTrue(newPasswords.count == (oldPasswords.count + 1))
+            
+            let editPasswordVC = EditPasswordViewModel(delegate: nil)
+            editPasswordVC.password = viewModel.password
+            
+            editPasswordVC.deletePassword()
+            
+            let newDeletedPasswords = database.fetch(with: Password.all)
+            
+            XCTAssertFalse(newDeletedPasswords.count == (newPasswords.count - 1))
+            
+        }
         
-        XCTAssertTrue(newPasswords.count == (oldPasswords.count + 1))
-        
-        let editPasswordVC = EditPasswordViewModel(delegate: nil)
-        editPasswordVC.password = viewModel.password
-        
-        editPasswordVC.deletePassword()
-        
-        let newDeletedPasswords = database.fetch(with: Password.all)
-        
-        XCTAssertFalse(newDeletedPasswords.count == (newPasswords.count - 1))
+    }
+    
+    func testLeakPassword() {
         
     }
     
