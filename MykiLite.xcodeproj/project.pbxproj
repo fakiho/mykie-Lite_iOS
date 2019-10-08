@@ -232,6 +232,7 @@
 			children = (
 				46650FFC230694060084A95B /* UIColor+Extension.swift */,
 				AD1D97C42341F2F5007EFD96 /* String+Extras.swift */,
+				AD6C4DDF234C395100B1FC2B /* String+MD5.swift */,
 				AD1D97C823421BD9007EFD96 /* UIImageView+Async.swift */,
 			);
 			name = Extensions;
@@ -281,7 +282,6 @@
 		AD1D97CC23436FD4007EFD96 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				AD6C4DDE234C394000B1FC2B /* Encryption */,
 				AD847D052348960F00AB8DC2 /* HTTPManager */,
 				AD1D97CD23436FDA007EFD96 /* CommonAlert */,
 			);
@@ -311,14 +311,6 @@
 				AD366C1D234B69D900B461B1 /* Config.xcconfig */,
 			);
 			name = Config;
-			sourceTree = "<group>";
-		};
-		AD6C4DDE234C394000B1FC2B /* Encryption */ = {
-			isa = PBXGroup;
-			children = (
-				AD6C4DDF234C395100B1FC2B /* String+MD5.swift */,
-			);
-			path = Encryption;
 			sourceTree = "<group>";
 		};
 		AD847D052348960F00AB8DC2 /* HTTPManager */ = {
