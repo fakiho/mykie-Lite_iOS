@@ -21,14 +21,14 @@ extension UIImageView {
         }
         
         HTTPManager.downloadImg(with: url) { (image, error, isFromCache) in
-            if image != nil && error == nil {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if image != nil && error == nil {
                     self.image = image
+                    completion(error, image)
                 }
             }
-            completion(error, image)
+            
         }
-        
     }
     
 }

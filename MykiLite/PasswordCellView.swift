@@ -111,10 +111,8 @@ class PasswordCellView: UITableViewCell {
         emailLabel.text = detail
         itemImageView.loadImg(with: img, placeholder: UIImage(named: "default")) {
             [weak self] (error, image) in
-            DispatchQueue.main.async {
-                self?.itemImageView.clipsToBounds = true
-                self?.itemImageView.layer.cornerRadius = (self?.itemImageView.frame.height ?? 0) / 2
-            }
+            self?.itemImageView.clipsToBounds = true
+            self?.itemImageView.layer.cornerRadius = (self?.itemImageView.frame.height ?? 0) / 2
         }
     }
     
