@@ -20,7 +20,7 @@ extension UIImageView {
             return
         }
         
-        HTTPRequest.downloadImg(with: url) { (image, error, isFromCache) in
+        HTTPManager.downloadImg(with: url) { (image, error, isFromCache) in
             if image != nil && error == nil {
                 DispatchQueue.main.async {
                     self.image = image

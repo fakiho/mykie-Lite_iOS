@@ -31,4 +31,10 @@ extension String {
         return "https://logo.clearbit.com/\(self)"
     }
     
+    func substring(to indx: Int) -> String {
+        guard indx <= self.count else { return "" }
+        let index = self.index(self.startIndex, offsetBy: indx)
+        return "\(self[..<index])"
+    }
+    
 }

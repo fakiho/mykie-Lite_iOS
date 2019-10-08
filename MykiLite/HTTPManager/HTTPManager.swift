@@ -1,6 +1,6 @@
 //
 //  HTTPRequest.swift
-//  Photify
+//  MykiLite
 //
 //  Created by Miguel Bou Sleiman on 12/1/18.
 //  Copyright © 2018 Miguel Bou Sleiman. All rights reserved.
@@ -11,7 +11,28 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 var loadingImgs = [String : Int]()
 
-class HTTPRequest {
+enum HTTPManagerError: Error {
+    case error
+}
+
+class HTTPManager {
+    
+    class func handle(request: HTTPRequestBuilder, completion: @escaping (Swift.Result<Any, HTTPManagerError>)->Void?) {
+        
+        let task = URLSession.shared.dataTask(with: request.urlRequest) { (data, response, error) in
+            
+            guard error == nil else {
+                completion(.failure(.error))
+                return
+            }
+            
+            
+            
+        }
+        
+        task.resume()
+        
+    }
     
     class func downloadImg(with url: URL, completion: @escaping (_ image: UIImage?, _ error: Error?,_ fromCache: Bool) -> Void) {
         
