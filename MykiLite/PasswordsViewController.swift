@@ -39,7 +39,7 @@ class PasswordsViewController: UITableViewController, MykiRouter {
     }
     
     @objc func addPassword() {
-        self.push(self.viewModel.getAddPasswordRoute())
+        self.push(self.viewModel.getAddPasswordRoute(), animated: true)
     }
     
     func configureNavBar() {

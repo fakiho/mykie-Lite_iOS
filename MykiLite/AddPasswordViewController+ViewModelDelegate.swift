@@ -11,7 +11,7 @@ import UIKit
 extension AddPasswordViewController: AddPasswordViewModelDelegate {
     
     func shouldDismissView() {
-        self.popView()
+        self.popView(animated: true)
     }
     
     func showPopUp(with title: String, message: String) {

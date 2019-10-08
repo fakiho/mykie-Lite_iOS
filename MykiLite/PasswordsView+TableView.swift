@@ -24,7 +24,7 @@ extension PasswordsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = self.viewModel.editPassword(at: indexPath.row) else { return }
-        self.push(vc)
+        self.push(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

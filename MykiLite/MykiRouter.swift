@@ -9,30 +9,30 @@
 import UIKit
 
 protocol MykiRouter {
-    func push(_ vc: MykiViewControllers)
-    func present(_ vc: MykiViewControllers)
-    func popView()
-    func dismissView()
+    func push(_ vc: MykiViewControllers, animated: Bool)
+    func present(_ vc: MykiViewControllers, animated: Bool, completion: @escaping () -> Void)
+    func popView(animated: Bool)
+    func dismissView(animated: Bool, completion: @escaping () -> Void)
 }
 
 //MARK: Implemetation
 
 extension MykiRouter where Self: UIViewController {
     
-    func push(_ vc: MykiViewControllers) {
-        self.navigationController?.pushViewController(vc.getVC(), animated: true)
+    func push(_ vc: MykiViewControllers, animated: Bool) {
+        self.navigationController?.pushViewController(vc.getVC(), animated: animated)
     }
     
-    func present(_ vc: MykiViewControllers) {
-        self.present(vc.getVC(), animated: true, completion: nil)
+    func present(_ vc: MykiViewControllers, animated: Bool, completion: @escaping () -> Void) {
+        self.present(vc.getVC(), animated: animated, completion: completion)
     }
     
-    func popView() {
-        self.navigationController?.popViewController(animated: true)
+    func popView(animated: Bool) {
+        self.navigationController?.popViewController(animated: animated)
     }
     
-    func dismissView() {
-        self.dismiss(animated: true, completion: nil)
+    func dismissView(animated: Bool, completion: @escaping () -> Void) {
+        self.dismiss(animated: animated, completion: completion)
     }
     
 }
