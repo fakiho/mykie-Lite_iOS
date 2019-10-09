@@ -51,10 +51,10 @@ class MykiLiteTests: XCTestCase {
     
     func addMocPassword(with viewModel: inout AddPasswordViewModel) {
         
-        viewModel.fieldNickname.value = "GMAIL"
-        viewModel.fieldUsername.value = "test@gmail.com"
-        viewModel.fieldPassword.value = "P@ssw0rd"
-        viewModel.fieldWebsite.value  = "gmail.com"
+        viewModel.fieldNickname.text = "GMAIL"
+        viewModel.fieldUsername.text = "test@gmail.com"
+        viewModel.fieldPassword.text = "P@ssw0rd"
+        viewModel.fieldWebsite.text  = "gmail.com"
         
         viewModel.savePassword()
     }

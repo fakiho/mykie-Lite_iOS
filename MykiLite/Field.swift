@@ -8,15 +8,21 @@
 
 import Foundation
 
-class Field {
+class Field: NSObject {
     var title: String
     var type: FieldTypes
     var isSecure: Bool
-    var value = ""
+    var value: String {
+        didSet {
+            completion?(value)
+        }
+    }
     var isEditable: Bool
     var isCopyable: Bool
+    var completion: ((String) -> Void)?
     
     init(title: String, type: FieldTypes, isSecure: Bool, isEditable: Bool, canCopy: Bool) {
+        self.value = ""
         self.title = title
         self.type = type
         self.isSecure = isSecure

@@ -54,7 +54,7 @@ extension AddPasswordViewController {
         cell.detailTextField.isUserInteractionEnabled = field.isEditable
         
         cell.detailTextField.delegate = self
-        cell.detailTextField.addTarget(self, action: #selector(self.textFieldChanged(_:)), for: .editingChanged)
+        cell.detailTextField.addTarget(self, action: #selector(self.textFieldChanged(_:)), for: .editingDidEnd)
         cell.detailTextField.tag = indexPath.row
         
         return cell

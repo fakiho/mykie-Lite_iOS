@@ -12,6 +12,7 @@ protocol AddPasswordViewModelDelegate: class {
     func showLoader()
     func hideLoader()
     func reloadView()
+    func reloadTable(for row: Int)
     func shouldDismissView()
     func showPopUp(with title: String, message: String)
     func showAlert(with title: String, message: String, completion: (() -> Void)?) 
@@ -58,6 +59,12 @@ class AddPasswordViewModel {
         fieldUsername = Field(title: "Username | Email", type: .text, isSecure: false, isEditable: true, canCopy: false)
         fieldPassword = Field(title: "Password", type: .password, isSecure: true, isEditable: true, canCopy: false)
         fieldWebsite  = Field(title: "Website", type: .text, isSecure: false, isEditable: true, canCopy: false)
+        fieldWebsite.completion = {
+            [unowned self] (text) -> Void in
+            guard self.fieldHeader.value != text.logoUrl else { return }
+            self.fieldHeader.value = text.logoUrl
+            self.delegate?.reloadTable(for: 0)
+        }
         
         fields = [fieldHeader, fieldNickname, fieldUsername, fieldPassword, fieldWebsite]
     }

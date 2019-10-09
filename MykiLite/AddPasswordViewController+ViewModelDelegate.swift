@@ -33,6 +33,10 @@ extension AddPasswordViewController: AddPasswordViewModelDelegate {
         self.tableView.reloadData()
     }
     
+    func reloadTable(for row: Int) {
+        self.tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+    }
+    
     func showAlert(with title: String, message: String, completion: (() -> Void)?) {
         self.showAlert(with: title, message: message, handler: completion)
     }
