@@ -18,6 +18,8 @@ class PasswordsViewModel {
     
     weak var delegate: PasswordsViewModelDelegate?
     
+    private var database: Database!
+    
     let title = "Passwords"
     
     private var isSearching = false
@@ -26,8 +28,9 @@ class PasswordsViewModel {
     private var passwords: [Password]!
     //removed the fetching from the db on everycall, since its an unecessary call to get the same data many times, and instead, i'm updating from the db when needed
     
-    init(delegate: PasswordsViewModelDelegate) {
+    init(delegate: PasswordsViewModelDelegate, db: Database) {
         self.delegate = delegate
+        self.database = db
         self.setPasswordObserver()
     }
     
@@ -40,7 +43,7 @@ class PasswordsViewModel {
     }
     
     func fetchPasswords() {
-        passwords = database.fetch(with: Password.all)
+        passwords = self.database.fetch(with: Password.all)
         if !isSearching {
             self.delegate?.reloadView()
         }

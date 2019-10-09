@@ -12,8 +12,8 @@ class EditPasswordViewModel: AddPasswordViewModel {
     
     var isEditing: Bool = false
     
-    override init(delegate: AddPasswordViewModelDelegate) {
-        super.init(delegate: delegate)
+    override init(delegate: AddPasswordViewModelDelegate, db: Database) {
+        super.init(delegate: delegate, db: db)
         self.title = ""
         self.type = .edit
     }
@@ -53,9 +53,9 @@ class EditPasswordViewModel: AddPasswordViewModel {
             database.delete(type: PasswordObject.self, with: self?.password?.uuid ?? "")
             
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self?.delegate?.shouldDismissView()
-//            }
+            //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            //                self?.delegate?.shouldDismissView()
+            //            }
         })
     }
     

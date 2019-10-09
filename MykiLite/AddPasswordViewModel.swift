@@ -28,6 +28,8 @@ class AddPasswordViewModel {
     
     weak var delegate: AddPasswordViewModelDelegate?
     
+    private var database: Database
+    
     var title: String?
     var password: Password?
     
@@ -43,8 +45,9 @@ class AddPasswordViewModel {
         return fields.count
     }
     
-    init(delegate: AddPasswordViewModelDelegate) {
+    init(delegate: AddPasswordViewModelDelegate, db: Database) {
         self.delegate = delegate
+        self.database = db
         self.title = "Add Password"
         prepareFields()
     }
@@ -142,7 +145,7 @@ class AddPasswordViewModel {
                                      password: self.fieldPassword.value,
                                      url: self.fieldWebsite.value)
             
-            database.createOrUpdate(model: self.password!, with: PasswordObject.init)
+            self.database.createOrUpdate(model: self.password!, with: PasswordObject.init)
             
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
             self.delegate?.shouldDismissView()

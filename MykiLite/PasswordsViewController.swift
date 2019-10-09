@@ -11,7 +11,7 @@ import UIKit
 class PasswordsViewController: UITableViewController, MykiRouter {
     
     lazy var viewModel: PasswordsViewModel = {
-        let _viewModel = PasswordsViewModel(delegate: self)
+        let _viewModel = PasswordsViewModel(delegate: self, db: database)
         return _viewModel
     }()
     
