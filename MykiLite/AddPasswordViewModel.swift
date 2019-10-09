@@ -59,7 +59,7 @@ class AddPasswordViewModel {
         fieldUsername = Field(title: "Username | Email", type: .text, isSecure: false, isEditable: true, canCopy: false)
         fieldPassword = Field(title: "Password", type: .password, isSecure: true, isEditable: true, canCopy: false)
         fieldWebsite  = Field(title: "Website", type: .text, isSecure: false, isEditable: true, canCopy: false)
-        fieldWebsite.completion = {
+        fieldWebsite.didSetCompletion = {
             [unowned self] (text) -> Void in
             guard self.fieldHeader.value != text.logoUrl else { return }
             self.fieldHeader.value = text.logoUrl

@@ -14,12 +14,12 @@ class Field: NSObject {
     var isSecure: Bool
     var value: String {
         didSet {
-            completion?(value)
+            didSetCompletion?(value)
         }
     }
     var isEditable: Bool
     var isCopyable: Bool
-    var completion: ((String) -> Void)?
+    var didSetCompletion: ((String) -> Void)?
     
     init(title: String, type: FieldTypes, isSecure: Bool, isEditable: Bool, canCopy: Bool) {
         self.value = ""
