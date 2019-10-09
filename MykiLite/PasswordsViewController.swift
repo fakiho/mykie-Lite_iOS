@@ -51,6 +51,7 @@ class PasswordsViewController: UITableViewController, MykiRouter {
     func configureView() {
         self.view.backgroundColor = .darkGray
         self.tableView.separatorStyle = .none
+        self.tableView.keyboardDismissMode = .onDrag
         self.tableView.register(PasswordCellView.self, forCellReuseIdentifier: "cell")
     }
     
