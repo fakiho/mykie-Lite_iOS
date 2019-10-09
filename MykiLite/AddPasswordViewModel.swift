@@ -136,7 +136,6 @@ class AddPasswordViewModel {
     }
     
     func savePassword() {
-        
         DispatchQueue.main.async {
             self.password = Password(uuid: (self.password?.uuid.isNull() ?? true) ? UUID().uuidString.lowercased() : self.password!.uuid,
                                      nickname: self.fieldNickname.value,
@@ -151,7 +150,6 @@ class AddPasswordViewModel {
                 self.delegate?.shouldDismissView()
             }
         }
-        
     }
     
     func didPressNavButton() {

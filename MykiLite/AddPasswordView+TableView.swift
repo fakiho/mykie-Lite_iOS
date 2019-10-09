@@ -37,7 +37,7 @@ extension AddPasswordViewController {
     func getHeaderCell(indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! PasswordHeaderCellView
         let field = viewModel.fields[indexPath.row]
-        cell.setCell(with: field.value.logoUrl)
+        cell.setCell(with: field.value)
         return cell
     }
     
