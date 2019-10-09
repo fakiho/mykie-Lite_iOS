@@ -147,7 +147,9 @@ class AddPasswordViewModel {
             self.database.createOrUpdate(model: self.password!, with: PasswordObject.init)
             
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
-            self.delegate?.shouldDismissView()
+            if self.type == .add  {
+                self.delegate?.shouldDismissView()
+            }
         }
         
     }
