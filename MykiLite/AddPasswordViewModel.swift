@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol AddPasswordViewModelDelegate: class {
     func showLoader()
@@ -44,8 +43,8 @@ class AddPasswordViewModel {
         return fields.count
     }
     
-    init(delegate: UIViewController?) {
-        self.delegate = delegate as? AddPasswordViewModelDelegate
+    init(delegate: AddPasswordViewModelDelegate) {
+        self.delegate = delegate
         self.title = "Add Password"
         prepareFields()
     }

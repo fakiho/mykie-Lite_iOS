@@ -53,9 +53,9 @@ enum HTTPManagerError: Int, Error {
     }
 }
 
-class HTTPManager {
+struct HTTPManager {
     
-    class func handle(request: HTTPRequestBuilder, completion: @escaping (Swift.Result<Any, HTTPManagerError>)->Void?) {
+    static func handle(request: HTTPRequestBuilder, completion: @escaping (Swift.Result<Any, HTTPManagerError>)->Void?) {
         
         let task = URLSession.shared.dataTask(with: request.urlRequest) { (data, response, error) in
             
@@ -85,7 +85,7 @@ class HTTPManager {
         
     }
     
-    class func downloadImg(with url: URL, completion: @escaping (_ image: UIImage?, _ error: Error?,_ fromCache: Bool) -> Void) {
+    static func downloadImg(with url: URL, completion: @escaping (_ image: UIImage?, _ error: Error?,_ fromCache: Bool) -> Void) {
         
         if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
             completion(cachedImage, nil, true)
@@ -109,7 +109,6 @@ class HTTPManager {
                     
                     imageCache.setObject(image, forKey: url.absoluteString as NSString)
                     completion(image, nil, false)
-                    
                     
                 }
                 

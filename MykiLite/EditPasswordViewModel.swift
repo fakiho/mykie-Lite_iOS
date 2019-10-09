@@ -6,13 +6,13 @@
 //  Copyright © 2019 myki. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class EditPasswordViewModel: AddPasswordViewModel {
     
     var isEditing: Bool = false
     
-    override init(delegate: UIViewController?) {
+    override init(delegate: AddPasswordViewModelDelegate) {
         super.init(delegate: delegate)
         self.title = ""
         self.type = .edit
@@ -51,10 +51,11 @@ class EditPasswordViewModel: AddPasswordViewModel {
         self.delegate?.showAlert(with: "Alert".localized, message: "Are you sure you want to delete this password?", completion: {
             [weak self] in
             database.delete(type: PasswordObject.self, with: self?.password?.uuid ?? "")
+            
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self?.delegate?.shouldDismissView()
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                self?.delegate?.shouldDismissView()
+//            }
         })
     }
     
