@@ -27,8 +27,7 @@ class AddPasswordViewModel {
     var type: AddPasswordModelType? = .add
     
     weak var delegate: AddPasswordViewModelDelegate?
-    
-    private var database: Database
+    var database: Database
     
     var title: String?
     var password: Password?

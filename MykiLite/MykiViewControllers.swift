@@ -29,14 +29,14 @@ enum MykiViewControllers {
         
         switch type {
         case .edit:
-            let editViewModel = EditPasswordViewModel(delegate: addPasswordVC, db: database)
+            let editViewModel = EditPasswordViewModel(delegate: addPasswordVC, db: Database.shared)
             if password != nil {
                 editViewModel.updateFields(with: password!)
             }
             viewModel = editViewModel
             break
         case .add:
-            viewModel = AddPasswordViewModel(delegate: addPasswordVC, db: database)
+            viewModel = AddPasswordViewModel(delegate: addPasswordVC, db: Database.shared)
             break
         }
         

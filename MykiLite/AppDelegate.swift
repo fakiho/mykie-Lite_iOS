@@ -8,8 +8,6 @@
 
 import UIKit
 
-let database = Database()
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

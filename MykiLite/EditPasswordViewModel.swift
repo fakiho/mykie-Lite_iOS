@@ -50,7 +50,7 @@ class EditPasswordViewModel: AddPasswordViewModel {
         
         self.delegate?.showAlert(with: "Alert".localized, message: "Are you sure you want to delete this password?", completion: {
             [weak self] in
-            database.delete(type: PasswordObject.self, with: self?.password?.uuid ?? "")
+            self?.database.delete(type: PasswordObject.self, with: self?.password?.uuid ?? "")
             
             NotificationCenter.default.post(name: NSNotification.Name(kPasswordNotification), object: nil)
             //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
