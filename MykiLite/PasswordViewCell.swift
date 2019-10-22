@@ -10,6 +10,14 @@ import UIKit
 
 class PasswordViewCell: UITableViewCell {
 
+    internal lazy var passwordView: PasswordView = {
+        let passwordView = PasswordView(frame: CGRect.zero)
+        passwordView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(passwordView)
+        passwordView.setFillingConstraints(in: self)
+        return passwordView
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +27,10 @@ class PasswordViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupView(title: String, subtitle: String, image: UIImage?) {
+        self.passwordView.setup(title: title, subtitle: subtitle, image: image)
     }
 
 }
