@@ -10,7 +10,7 @@ import UIKit
 
 class PasswordsViewController: UITableViewController {
 
-  var viewModel: PasswordViewModel!
+  var viewModel: PasswordsViewModel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
