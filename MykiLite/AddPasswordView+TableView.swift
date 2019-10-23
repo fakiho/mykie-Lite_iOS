@@ -44,7 +44,8 @@ extension AddPasswordViewController {
   func getFieldCell(indexPath: IndexPath) -> UITableViewCell {
     let field = viewModel.fields[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailCellView
-    cell.titleLabel.text = field.title
+    cell.titleLabel.text = field.title.rawValue
+    cell.fieldType = field.title
     cell.detailTextField.text = field.value
     cell.detailTextField.isSecureTextEntry = field.isSecure
 
