@@ -14,6 +14,7 @@ class DetailCellView: UITableViewCell {
   var infoBackgroundView = UIView()
   var titleLabel = UILabel()
   var detailTextField = UITextField()
+  var fieldType: Fields = .nickName
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -71,4 +72,7 @@ class DetailCellView: UITableViewCell {
     super.layoutSublayers(of: layer)
   }
 
+    func getFieldText() -> (String, String) {
+        return (fieldType.getKey(), detailTextField.text ?? "")
+    }
 }
