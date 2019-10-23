@@ -17,12 +17,16 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     var isEditable: Bool = false
-    
+    internal var client: CompanyLogoClient?
+    var tableFooterView: FooterEditView? = FooterEditView()
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = AddPasswordViewModel()
         configureNavBar()
         configureView()
+        client = CompanyLogoClient(dataProvider: GenericClientDataProvider())
+        fillData()
+        addFooterViewIfEditable()
     }
 
   func configureNavBar() {
@@ -56,14 +60,41 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
         return Password(object: PasswordObject(password: Password(object: dict as NSDictionary)))
     }
     
+    func getEditablePassword() {
+        if isEditable {
+            viewModel.getPasswordByUUID(for: uuid!)
+        }
+    }
+    
     func fillData() {
-        
+        getEditablePassword()
     }
 
-  @objc func textFieldChanged(_ textField: UITextField) {
-    if let text = textField.text {
-      viewModel.fields[textField.tag].value = text
+    @objc func textFieldChanged(_ textField: UITextField) {
+        if let text = textField.text {
+            viewModel.fields[textField.tag].value = text
+        }
     }
-  }
-
+    
+    func addFooterViewIfEditable() {
+        if (isEditable) {
+            tableFooterView?.translatesAutoresizingMaskIntoConstraints = false
+            self.navigationController?.view.addSubview(tableFooterView!)
+            tableFooterView?.bottomAnchor(to: self.navigationController!.view.bottomAnchor, constant: 0)
+            tableFooterView?.leftAnchor(to: self.navigationController!.view.leftAnchor, constant: 0)
+            tableFooterView?.rightAnchor(to: self.navigationController!.view.rightAnchor, constant: 0)
+            tableFooterView?.heightAnchor(to: 70)
+            tableFooterView?.action = {
+                guard let uuid = self.uuid else {return}
+                self.viewModel.delete(by: uuid)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if isEditable {
+            tableFooterView?.removeFromSuperview()
+        }
+    }
 }
