@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 enum Fields: String {
     case nickName = "NickName"
     case userName = "UserName | Email"
@@ -24,7 +26,7 @@ enum Fields: String {
         case .password:
             return "password"
         case .website:
-            return "website"
+            return "url"
         case .header:
             return ""
         }
@@ -66,8 +68,7 @@ class AddPasswordViewModel {
         print(database.fetch(with: getByUUID(uuid: uuid ?? "")))
     }
     
-    func getByUUID(uuid: String) -> FetchRequest<[Password], PasswordObject> {
-           return FetchRequest<[Password], PasswordObject>(predicate: NSPredicate(format: "uuid = %@", uuid), sortDescriptors: [], transformer: { $0.map(Password.init) })
-       }
-
+   func getByUUID(uuid: String) -> FetchRequest<[Password], PasswordObject> {
+        return FetchRequest<[Password], PasswordObject>(predicate: NSPredicate(format: "uuid = %@", uuid), sortDescriptors: [], transformer: { $0.map(Password.init)})
+    }
 }
