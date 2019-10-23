@@ -15,7 +15,7 @@ class PasswordsViewController: UITableViewController {
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
+    internal var client: CompanyLogoClient?
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
@@ -63,6 +63,7 @@ class PasswordsViewController: UITableViewController {
     configureNavBar()
     configureView()
     registerTableCell()
+    client = CompanyLogoClient(dataProvider: GenericClientDataProvider())
     // Ensure that the search bar doesn't remain on the screen if user navigate
     definesPresentationContext = true
   }
