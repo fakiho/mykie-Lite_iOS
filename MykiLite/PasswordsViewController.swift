@@ -15,6 +15,10 @@ class PasswordsViewController: UITableViewController {
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.barStyle = .black
+        // Will inform the class of any text changes within the UISearchBar.
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Nickname | Email"
         if #available(iOS 11.0, *) {
             let searchBar = searchController.searchBar
             searchBar.tintColor = UIColor.white
@@ -46,6 +50,8 @@ class PasswordsViewController: UITableViewController {
     configureNavBar()
     configureView()
     registerTableCell()
+    // Ensure that the search bar doesn't remain on the screen if user navigate
+    definesPresentationContext = true
   }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,4 +90,12 @@ class PasswordsViewController: UITableViewController {
     self.tableView.separatorStyle = .none
     self.tableView.register(PasswordCellView.self, forCellReuseIdentifier: "cell")
   }
+}
+
+extension PasswordsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        <#code#>
+    }
+    
+    
 }
