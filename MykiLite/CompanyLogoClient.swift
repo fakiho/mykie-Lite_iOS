@@ -22,6 +22,14 @@ public class CompanyLogoClient: NSObject, DBSClient {
     }
 }
 extension CompanyLogoClient: CompanyLogoClientProtocol {
+    
+    /// Call Clearbit Service and try to get the domain logo provided by the user
+    /// here you can see two ways to cache:
+    /// -1 Saving in memory as temporary but it need to be handed specially if there's a huge amount of data so it need to be carefully monitored and clear when it necessary
+    /// 2- Saving internally less memory usage but it take space on the disk storage but for this case i think it's the best way specially there's no huge amount of images to download plus the image quality is
+    /// low it won't take a large space and also won't take too long to read-write on the disk (small size)
+    /// - Parameter domain: the website user entered for
+    /// - Parameter completion: a way to callback when the session is completed escaping with an optional image and error if exist
     public func getLogo(domain: String, completion: @escaping (UIImage?, Error?) -> Void) {
         let urlComponent = URLComponents(string: baseURL.appendingPathComponent("\(domain)").absoluteString)
         guard let url = urlComponent?.url else {completion(nil, NSError(domain: "", code: 0110, userInfo: ["domain" : baseURL])); return}
