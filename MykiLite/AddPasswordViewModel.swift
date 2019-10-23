@@ -9,12 +9,28 @@
 import Foundation
 import UIKit
 
-enum Fields: String {
-    case nickName = "NickName"
-    case userName = "UserName | Email"
-    case password = "Password"
-    case website = "Website"
-    case header = "Header"
+enum Fields: Int {
+    case header
+    case nickName
+    case userName
+    case password
+    case website
+    
+    
+    func getTitle() -> String {
+        switch self {
+            case .nickName:
+                return "NickName"
+            case .userName:
+                return "UserName | Email"
+            case .password:
+                return "Password"
+            case .website:
+                return "Website"
+            case .header:
+                return "Header"
+        }
+    }
     
     func getKey() -> String {
         switch self {
@@ -35,40 +51,54 @@ enum Fields: String {
 
 class AddPasswordViewModel {
 
-  var password: Password!
-  var fields: [Field] = []
+    var password: Password!
+    var fields: [Field] = []
     var uuid: String?
-  var numberOfCells: Int {
-    return fields.count
-  }
-
-  init() {
-    prepareFields()
-  }
-
-  func prepareFields() {
-    let items: [NSDictionary] = [["title": Fields.header, "type": FieldTypes.header, "secure": false], ["title": Fields.nickName, "type": FieldTypes.text, "secure": false], ["title": Fields.userName, "type": FieldTypes.text, "secure": false], ["title": Fields.password, "type": FieldTypes.password, "secure": true], ["title": Fields.website, "type": FieldTypes.text, "secure": false]]
-
-    for item in items {
-      guard let title = item["title"] as? Fields, let type = item["type"] as? FieldTypes, let isSecure = item["secure"] as? Bool else { continue }
-      fields.append(Field(title: title, type: type, isSecure: isSecure))
+    var numberOfCells: Int {
+        return fields.count
     }
-    guard uuid != nil else {
-        return
+    var editablePassword: Password?
+
+    init() {
+        prepareFields()
     }
+
+    func prepareFields() {
+        let items: [NSDictionary] = [["title": Fields.header, "type": FieldTypes.header, "secure": false], ["title": Fields.nickName, "type": FieldTypes.text, "secure": false], ["title": Fields.userName, "type": FieldTypes.text, "secure": false], ["title": Fields.password, "type": FieldTypes.password, "secure": true], ["title": Fields.website, "type": FieldTypes.text, "secure": false]]
+
+        for item in items {
+            guard let title = item["title"] as? Fields, let type = item["type"] as? FieldTypes, let isSecure = item["secure"] as? Bool else { continue }
+            fields.append(Field(title: title, type: type, isSecure: isSecure))
+        }
+        guard uuid != nil else {
+            return
+        }
     
-    getPassword()
-  }
+        getPassword()
+    }
 
-  func updatePassword(item: NSDictionary) {
-    password = Password(object: item)
-  }
+    func updatePassword(item: NSDictionary) {
+        password = Password(object: item)
+    }
     
     func getPassword() {
         print(database.fetch(with: getByUUID(uuid: uuid ?? "")))
     }
     
-   func getByUUID(uuid: String) -> FetchRequest<[Password], PasswordObject> {
+    func getPasswordByUUID(for UUID: String) {
+        editablePassword = database.fetch(with: getByUUID(uuid: UUID)).first
+        guard let gPassword = editablePassword else {return}
+        for i in 0 ..< fields.count {
+            fields[i].value = gPassword.getValue(by: Fields(rawValue: i) ?? Fields.nickName)
+        }
+        
+    }
+    
+    func delete(by UUID: String ) {
+        database.delete(type: PasswordObject.self, with: UUID)
+    }
+    
+    private func getByUUID(uuid: String) -> FetchRequest<[Password], PasswordObject> {
         return FetchRequest<[Password], PasswordObject>(predicate: NSPredicate(format: "uuid = %@", uuid), sortDescriptors: [], transformer: { $0.map(Password.init)})
     }
 }
