@@ -11,10 +11,20 @@ import UIKit
 
 class DetailCellView: UITableViewCell {
 
-  var infoBackgroundView = UIView()
-  var titleLabel = UILabel()
-  var detailTextField = UITextField()
-  var fieldType: Fields = .nickName
+    var infoBackgroundView = UIView()
+    var titleLabel = UILabel()
+    var detailTextField = UITextField()
+    var fieldType: Fields = .nickName
+    var isEditable: Bool = false
+    var value: String?
+    
+    var copyBtn: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor.mykiGreen, for: .normal)
+        button.setTitle("COPY", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -36,6 +46,7 @@ class DetailCellView: UITableViewCell {
     detailTextField.textColor = .white
     detailTextField.font = UIFont.systemFont(ofSize: 16)
     detailTextField.autocorrectionType = .no
+    detailTextField.isEnabled = !isEditable
 
     self.contentView.addSubview(infoBackgroundView)
     infoBackgroundView.addSubview(titleLabel)
@@ -57,12 +68,12 @@ class DetailCellView: UITableViewCell {
       infoBackgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 
       titleLabel.leftAnchor.constraint(equalTo: infoBackgroundView.leftAnchor, constant: 10),
-      titleLabel.rightAnchor.constraint(equalTo: infoBackgroundView.rightAnchor, constant: -10),
+      titleLabel.rightAnchor.constraint(equalTo: infoBackgroundView.rightAnchor, constant: -60),
       titleLabel.topAnchor.constraint(equalTo: infoBackgroundView.topAnchor, constant: 10),
       titleLabel.heightAnchor.constraint(equalToConstant: 18),
 
       detailTextField.leftAnchor.constraint(equalTo: infoBackgroundView.leftAnchor, constant: 10),
-      detailTextField.rightAnchor.constraint(equalTo: infoBackgroundView.rightAnchor, constant: -10),
+      detailTextField.rightAnchor.constraint(equalTo: infoBackgroundView.rightAnchor, constant: -60),
       detailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
       detailTextField.heightAnchor.constraint(equalToConstant: 18),
       ])
@@ -75,4 +86,41 @@ class DetailCellView: UITableViewCell {
     func getFieldText() -> (String, String) {
         return (fieldType.getKey(), detailTextField.text ?? "")
     }
+    
+    @objc func copyText() {
+        UIPasteboard.general.string = value
+        copyBtn.setTitle("COPIED", for: .normal)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.copyBtn.setTitle("COPY", for: .normal)
+        }
+    }
+    
+    func setupEditMode() {
+        if isEditable {
+            setupCopy()
+            setupLongPress()
+        }
+    }
+    
+    func setupCopy() {
+        infoBackgroundView.addSubview(copyBtn)
+        copyBtn.rightAnchor(to: infoBackgroundView.rightAnchor, constant: -20)
+        copyBtn.centerYAnchor(to: infoBackgroundView.centerYAnchor)
+        infoBackgroundView.bringSubviewToFront(copyBtn)
+        copyBtn.addTarget(self, action: #selector(copyText), for: .touchUpInside)
+    }
+    
+    func setupLongPress() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(revealItem))
+        self.detailTextField.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    @objc func revealItem() {
+        self.detailTextField.text = value
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.detailTextField.text = "Hold to reveal item"
+        }
+    }
+ 
 }
