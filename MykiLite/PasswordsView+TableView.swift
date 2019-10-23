@@ -29,6 +29,7 @@ extension PasswordsViewController {
     }
     cell.setupContent(password: password, client: client)
     cell.selectionStyle = .none
+    cell.isUserInteractionEnabled = true
     return cell
   }
 
