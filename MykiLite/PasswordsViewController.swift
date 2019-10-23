@@ -11,7 +11,15 @@ import UIKit
 class PasswordsViewController: UITableViewController {
 
     var viewModel: PasswordsViewModel!
-
+    var filteredPassword: [Password] = []
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredPassword = viewModel.passwordFilter(by: searchText)
+    }
+        
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.barStyle = .black
