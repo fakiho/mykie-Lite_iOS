@@ -12,11 +12,11 @@ import UIKit
 public class CompanyLogoClient: NSObject, DBSClient {
     public var dataProvider: DBSDataProvider?
     public var baseURL: URL
-    
+    public var saveHelper: SaveHelper = SaveHelper()
     /// Initialize Wallet Client
     /// - Parameter dataProvider: Responsible for creating a secure request from one place and where it can handle all the authentications
     /// - Parameter baseURL: The base url used to make changing it easy for a specific client
-    public init(dataProvider: DBSDataProvider?, baseURL: URL) {
+    public init(dataProvider: DBSDataProvider?, baseURL: URL = URL(string: "https://logo.clearbit.com/")!) {
         self.dataProvider = dataProvider
         self.baseURL = baseURL
     }
@@ -28,11 +28,16 @@ extension CompanyLogoClient: CompanyLogoClientProtocol {
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
-        dataProvider?.execute(request, completionHandler: { (_, data, error) in
-            guard let data = data else { completion(nil, error); return}
-            let image = UIImage(data: data)
-            completion(image, error)
-        })
+        guard (saveHelper.retrieveImage(forKey: domain, inStorage: StorageType.fileSystem) != nil) else {
+            dataProvider?.execute(request, completionHandler: { (_, data, error) in
+                guard let data = data else { completion(nil, error); return}
+                guard let image = UIImage(data: data) else {completion(nil, error); return}
+                self.saveHelper.store(image: image, forKey: domain, withStorageType: StorageType.fileSystem)
+                completion(image, error)
+            })
+            return
+        }
+        
     }
     
     
