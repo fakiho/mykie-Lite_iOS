@@ -33,11 +33,10 @@ extension PasswordsViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let cell: PasswordCellView = tableView.cellForRow(at: indexPath) as! PasswordCellView
     let password = viewModel.getPassword(row: indexPath.row)
-    print(password.url)
-    //getPassword(row: indexPath)
-    //editPassword()
+    let controller = AddPasswordViewController()
+    controller.uuid = password.uuid
+    self.navigationController?.pushViewController(controller, animated: true)
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
