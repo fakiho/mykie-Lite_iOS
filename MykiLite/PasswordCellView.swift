@@ -79,6 +79,9 @@ class PasswordCellView: UITableViewCell {
       ])
   }
     
+    /// Setup the content and making the request from the inside cause it's easier to reach each cell it's self and setting the image when the session is completed
+    /// - Parameter password: Data need to be displayed for the user
+    /// - Parameter client: A way to call the service and get the image 
     func setupContent(password: Password, client: CompanyLogoClient?) {
         self.nicknameLabel.text = password.nickname
         self.emailLabel.text = password.username
