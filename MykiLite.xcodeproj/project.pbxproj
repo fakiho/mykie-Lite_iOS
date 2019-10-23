@@ -43,6 +43,10 @@
 		CE8CA13E235F65A800CE36AD /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA13D235F65A800CE36AD /* Float+Extension.swift */; };
 		CE8CA1432360BD6E00CE36AD /* SaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1422360BD6E00CE36AD /* SaveHelper.swift */; };
 		CE8CA1452360BD8F00CE36AD /* SaveHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */; };
+		CE8CA1472360E51800CE36AD /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1462360E51800CE36AD /* UIImage + Extension.swift */; };
+		CE8CA14A2360F6F300CE36AD /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1492360F6F300CE36AD /* FooterView.swift */; };
+		CE8CA14C236101FA00CE36AD /* HeaderSaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA14B236101FA00CE36AD /* HeaderSaveView.swift */; };
+		CE8CA14E2361041000CE36AD /* HeaderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA14D2361041000CE36AD /* HeaderEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,10 @@
 		CE8CA13D235F65A800CE36AD /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		CE8CA1422360BD6E00CE36AD /* SaveHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveHelper.swift; sourceTree = "<group>"; };
 		CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveHelperProtocol.swift; sourceTree = "<group>"; };
+		CE8CA1462360E51800CE36AD /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		CE8CA1492360F6F300CE36AD /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		CE8CA14B236101FA00CE36AD /* HeaderSaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSaveView.swift; sourceTree = "<group>"; };
+		CE8CA14D2361041000CE36AD /* HeaderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderEditView.swift; sourceTree = "<group>"; };
 		D77919509757977EB1315874 /* Pods-MykiLiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MykiLiteUITests.release.xcconfig"; path = "Target Support Files/Pods-MykiLiteUITests/Pods-MykiLiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +222,7 @@
 		46650FF0230693DA0084A95B /* AddPasswordView */ = {
 			isa = PBXGroup;
 			children = (
+				CE8CA1482360F6E800CE36AD /* Component */,
 				46650FF4230693E30084A95B /* AddPasswordViewController.swift */,
 				46650FF5230693E30084A95B /* AddPasswordView+TableView.swift */,
 				46650FF1230693E30084A95B /* AddPasswordViewModel.swift */,
@@ -231,6 +240,7 @@
 				CE8CA12B235F4E9C00CE36AD /* URLResponse+Extension.swift */,
 				CE8CA13B235F63B200CE36AD /* UIView+Extension.swift */,
 				CE8CA13D235F65A800CE36AD /* Float+Extension.swift */,
+				CE8CA1462360E51800CE36AD /* UIImage + Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -362,6 +372,16 @@
 				CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */,
 			);
 			name = CacheHelper;
+			sourceTree = "<group>";
+		};
+		CE8CA1482360F6E800CE36AD /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CA1492360F6F300CE36AD /* FooterView.swift */,
+				CE8CA14B236101FA00CE36AD /* HeaderSaveView.swift */,
+				CE8CA14D2361041000CE36AD /* HeaderEditView.swift */,
+			);
+			name = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,10 +617,13 @@
 				46651009230694580084A95B /* Field.swift in Sources */,
 				46650FEE230693B70084A95B /* PasswordsViewModel.swift in Sources */,
 				46651003230694450084A95B /* PasswordObject.swift in Sources */,
+				CE8CA14E2361041000CE36AD /* HeaderEditView.swift in Sources */,
 				CE8CA128235F4E3A00CE36AD /* DBSClient.swift in Sources */,
 				CE8CA12C235F4E9C00CE36AD /* URLResponse+Extension.swift in Sources */,
 				46650FEC230693B70084A95B /* PasswordsView+TableView.swift in Sources */,
+				CE8CA14A2360F6F300CE36AD /* FooterView.swift in Sources */,
 				CE8CA13C235F63B200CE36AD /* UIView+Extension.swift in Sources */,
+				CE8CA14C236101FA00CE36AD /* HeaderSaveView.swift in Sources */,
 				46650FFA230693E30084A95B /* AddPasswordView+TableView.swift in Sources */,
 				CE8CA13E235F65A800CE36AD /* Float+Extension.swift in Sources */,
 				CE8CA13A235F629D00CE36AD /* PasswordView.swift in Sources */,
@@ -608,6 +631,7 @@
 				46650FF8230693E30084A95B /* DetailCellView.swift in Sources */,
 				4665100A230694580084A95B /* Password.swift in Sources */,
 				46650FED230693B70084A95B /* PasswordCellView.swift in Sources */,
+				CE8CA1472360E51800CE36AD /* UIImage + Extension.swift in Sources */,
 				46651004230694450084A95B /* Database.swift in Sources */,
 				CE8CA12A235F4E6F00CE36AD /* Data+Extension.swift in Sources */,
 				46650FF6230693E30084A95B /* AddPasswordViewModel.swift in Sources */,
