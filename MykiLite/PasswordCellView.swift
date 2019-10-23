@@ -77,14 +77,17 @@ class PasswordCellView: UITableViewCell {
       emailLabel.heightAnchor.constraint(equalToConstant: 14),
       emailLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20)
       ])
-
-    
-    func setupContent(nickname: String, email: String, itemImage: UIImage?) {
-        self.nicknameLabel.text = nickname
-        self.emailLabel.text = email
-        self.itemImageView.image = itemImage
-    }
   }
+    
+    func setupContent(password: Password, client: CompanyLogoClient?) {
+        self.nicknameLabel.text = password.nickname
+        self.emailLabel.text = password.username
+        client?.getLogo(domain: password.url, completion: { (image, error) in
+            DispatchQueue.main.async {
+                self.itemImageView.image = image
+            }
+        })
+    }
 
   override func layoutSublayers(of layer: CALayer) {
     super.layoutSublayers(of: layer)
