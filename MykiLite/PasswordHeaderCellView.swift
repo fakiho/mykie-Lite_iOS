@@ -10,55 +10,62 @@ import Foundation
 import UIKit
 
 class PasswordHeaderCellView: UITableViewCell {
+    var isEditable: Bool = false
+    lazy var headerSaveView: HeaderSaveView = {
+        let headerView = HeaderSaveView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
+    
+    lazy var headerEditView: HeaderEditView = {
+        let headerView = HeaderEditView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
 
-  var itemBackgroundView = UIView()
-  var itemImageView = UIImageView()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = UIColor.clear
+        
+    }
 
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    self.backgroundColor = UIColor.clear
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    func setupContent(source: String, client: CompanyLogoClient?, password: Password?) {
+            client?.getLogo(domain: source, completion: { (image, error) in
+                if(self.isEditable) {
+                    DispatchQueue.main.async {
+                        self.headerEditView.itemImageView.image = image
+                        self.headerEditView.itemBackgroundView.backgroundColor = image?.averageColor
+                        self.headerEditView.titleLabel.text = password?.nickname
+                        self.headerEditView.emailLabel.text = password?.username
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.headerSaveView.itemImageView.image = image
+                        self.headerSaveView.itemBackgroundView.backgroundColor = image?.averageColor
+                    }
+                }
+            })
+        }
 
-    itemBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-    itemBackgroundView.backgroundColor = .darkGray
-    itemBackgroundView.layer.borderWidth = 1
-    itemBackgroundView.layer.borderColor = UIColor.darkGray.cgColor
-    itemBackgroundView.layer.cornerRadius = 5
-
-    itemImageView.translatesAutoresizingMaskIntoConstraints = false
-    itemImageView.layer.masksToBounds = true
-    itemImageView.layer.borderWidth = 1
-    itemImageView.layer.borderColor = UIColor.clear.cgColor
-    itemImageView.image = UIImage(named: "default")
-
-    self.contentView.addSubview(itemBackgroundView)
-    itemBackgroundView.addSubview(itemImageView)
-  }
-
-  override func layoutSubviews() {
-    super.layoutSubviews()
-
-    let constraints: [NSLayoutConstraint] = [
-      itemBackgroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-      itemBackgroundView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-      itemBackgroundView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
-      itemBackgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-
-      itemImageView.centerXAnchor.constraint(equalTo: itemBackgroundView.centerXAnchor),
-      itemImageView.centerYAnchor.constraint(equalTo: itemBackgroundView.centerYAnchor),
-      itemImageView.widthAnchor.constraint(equalTo: itemBackgroundView.heightAnchor, multiplier: 1 / 2.5),
-      itemImageView.heightAnchor.constraint(equalTo: itemBackgroundView.heightAnchor, multiplier: 1 / 2.5),
-    ]
-
-    NSLayoutConstraint.activate(constraints)
-  }
-
-  override func layoutSublayers(of layer: CALayer) {
-    super.layoutSublayers(of: layer)
-    itemImageView.layer.cornerRadius = itemBackgroundView.frame.height / 5
-  }
-
+    
+    func setupViews(isEditable: Bool) {
+        self.isEditable = isEditable
+        if isEditable {
+            self.contentView.addSubview(headerEditView)
+            headerEditView.setFillingConstraints(in: self.contentView)
+        }
+        else {
+            self.contentView.addSubview(headerSaveView)
+            headerSaveView.setFillingConstraints(in: self.contentView)
+        }
+    }
+ 
 }
