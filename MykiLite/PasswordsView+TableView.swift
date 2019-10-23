@@ -27,14 +27,15 @@ extension PasswordsViewController {
     } else {
         password = viewModel.getPassword(row: indexPath.row)
     }
-    cell.nicknameLabel.text = password.nickname
-    cell.emailLabel.text = password.username
+    cell.setupContent(password: password, client: client)
     cell.selectionStyle = .none
     return cell
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let cell: PasswordCellView = tableView.cellForRow(at: indexPath) as! PasswordCellView    
+    let cell: PasswordCellView = tableView.cellForRow(at: indexPath) as! PasswordCellView
+    let password = viewModel.getPassword(row: indexPath.row)
+    print(password.url)
     //getPassword(row: indexPath)
     //editPassword()
   }
