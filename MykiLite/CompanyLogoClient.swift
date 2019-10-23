@@ -28,15 +28,23 @@ extension CompanyLogoClient: CompanyLogoClientProtocol {
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
+        if (imageCache.object(forKey: domain as AnyObject) != nil) {
+            print("Cached image used, no need to download it")
+            let image = imageCache.object(forKey: (domain as AnyObject)) as? UIImage
+                completion(image, nil)
+        }
         guard (saveHelper.retrieveImage(forKey: domain, inStorage: StorageType.fileSystem) != nil) else {
             dataProvider?.execute(request, completionHandler: { (_, data, error) in
                 guard let data = data else { completion(nil, error); return}
                 guard let image = UIImage(data: data) else {completion(nil, error); return}
                 self.saveHelper.store(image: image, forKey: domain, withStorageType: StorageType.fileSystem)
+                imageCache.setObject(image, forKey: domain as AnyObject)
                 completion(image, error)
             })
             return
         }
+        let image = saveHelper.retrieveImage(forKey: domain, inStorage: StorageType.fileSystem)
+        completion(image, nil)
         
     }
     
