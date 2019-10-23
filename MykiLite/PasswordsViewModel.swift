@@ -24,7 +24,7 @@ class PasswordsViewModel {
     
     func passwordFilter(by text: String?) -> [Password] {
         guard let searchText = text else {return []}
-        return database.fetch(with: FetchRequest<[Password], PasswordObject>(predicate: NSPredicate(format: "email = %@ || nickname = %@", searchText, searchText), sortDescriptors: [], transformer: { $0.map(Password.init)}))
+        return database.fetch(with: FetchRequest<[Password], PasswordObject>(predicate: NSPredicate(format: "nickname CONTAINS[c] %@ || username CONTAINS[c] %@", searchText, searchText), sortDescriptors: [], transformer: { $0.map(Password.init)}))
     }
 
 }
