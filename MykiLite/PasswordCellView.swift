@@ -78,6 +78,12 @@ class PasswordCellView: UITableViewCell {
       emailLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20)
       ])
 
+    
+    func setupContent(nickname: String, email: String, itemImage: UIImage?) {
+        self.nicknameLabel.text = nickname
+        self.emailLabel.text = email
+        self.itemImageView.image = itemImage
+    }
   }
 
   override func layoutSublayers(of layer: CALayer) {
