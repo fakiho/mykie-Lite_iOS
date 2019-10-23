@@ -54,4 +54,12 @@ class PasswordView: UIView {
         self.subtitle.text = subtitle
         self.imageView.image = image
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }
