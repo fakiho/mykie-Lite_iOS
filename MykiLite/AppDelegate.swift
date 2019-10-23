@@ -9,6 +9,7 @@
 import UIKit
 
 let database = Database()
+let imageCache = NSCache<AnyObject, AnyObject>()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
