@@ -38,17 +38,24 @@ extension AddPasswordViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! PasswordHeaderCellView
     cell.selectionStyle = .none
     cell.clipsToBounds = true
+    cell.setupViews(isEditable: isEditable)
+    let sourceUrl = viewModel.fields[indexPath.row].value
+    cell.setupContent(source: sourceUrl, client: client, password: viewModel.editablePassword)
     return cell
   }
 
   func getFieldCell(indexPath: IndexPath) -> UITableViewCell {
     let field = viewModel.fields[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailCellView
-    cell.titleLabel.text = field.title.rawValue
+    cell.isEditable = self.isEditable
+    cell.setupEditMode()
+    cell.selectionStyle = .none
+    cell.titleLabel.text = field.title.getTitle()
     cell.fieldType = field.title
-    cell.detailTextField.text = field.value
-    cell.detailTextField.isSecureTextEntry = field.isSecure
-
+    cell.value = field.value
+    cell.detailTextField.isSecureTextEntry = isEditable ? false : field.isSecure
+    
+    cell.detailTextField.text = (field.isSecure && isEditable) ? "Hold to reveal item" : field.value
     cell.clipsToBounds = true
     cell.selectionStyle = .none
     cell.detailTextField.tintColor = .mykiGreen
