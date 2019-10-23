@@ -16,8 +16,13 @@ class PasswordsViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
     func filterContentForSearchText(_ searchText: String) {
         filteredPassword = viewModel.passwordFilter(by: searchText)
+        self.tableView.reloadData()
     }
         
     lazy var searchController: UISearchController = {
@@ -102,7 +107,8 @@ class PasswordsViewController: UITableViewController {
 
 extension PasswordsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        <#code#>
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
     }
     
     
