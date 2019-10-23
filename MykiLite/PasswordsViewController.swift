@@ -66,6 +66,8 @@ class PasswordsViewController: UITableViewController {
     client = CompanyLogoClient(dataProvider: GenericClientDataProvider())
     // Ensure that the search bar doesn't remain on the screen if user navigate
     definesPresentationContext = true
+    tableView.allowsSelection = true
+    tableView.allowsMultipleSelection = false
   }
     
     override func viewWillAppear(_ animated: Bool) {
