@@ -46,4 +46,19 @@ extension Password {
       self.url = url
     }
   }
+    
+    func getValue(by field: Fields) -> String {
+        switch field {
+        case .header:
+            return url
+        case .nickName:
+            return nickname
+        case .userName:
+            return username
+        case .password:
+            return password
+        case .website:
+            return url
+        }
+    }
 }
