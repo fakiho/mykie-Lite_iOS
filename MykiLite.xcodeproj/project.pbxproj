@@ -37,6 +37,12 @@
 		CE8CA12C235F4E9C00CE36AD /* URLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA12B235F4E9C00CE36AD /* URLResponse+Extension.swift */; };
 		CE8CA132235F4F3900CE36AD /* CompanyLogoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA131235F4F3900CE36AD /* CompanyLogoClient.swift */; };
 		CE8CA134235F4F4C00CE36AD /* CompanyLogoClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA133235F4F4C00CE36AD /* CompanyLogoClientProtocol.swift */; };
+		CE8CA137235F628000CE36AD /* PasswordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA136235F628000CE36AD /* PasswordViewCell.swift */; };
+		CE8CA13A235F629D00CE36AD /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA139235F629D00CE36AD /* PasswordView.swift */; };
+		CE8CA13C235F63B200CE36AD /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA13B235F63B200CE36AD /* UIView+Extension.swift */; };
+		CE8CA13E235F65A800CE36AD /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA13D235F65A800CE36AD /* Float+Extension.swift */; };
+		CE8CA1432360BD6E00CE36AD /* SaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1422360BD6E00CE36AD /* SaveHelper.swift */; };
+		CE8CA1452360BD8F00CE36AD /* SaveHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +105,12 @@
 		CE8CA12B235F4E9C00CE36AD /* URLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extension.swift"; sourceTree = "<group>"; };
 		CE8CA131235F4F3900CE36AD /* CompanyLogoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyLogoClient.swift; sourceTree = "<group>"; };
 		CE8CA133235F4F4C00CE36AD /* CompanyLogoClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyLogoClientProtocol.swift; sourceTree = "<group>"; };
+		CE8CA136235F628000CE36AD /* PasswordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewCell.swift; sourceTree = "<group>"; };
+		CE8CA139235F629D00CE36AD /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		CE8CA13B235F63B200CE36AD /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		CE8CA13D235F65A800CE36AD /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
+		CE8CA1422360BD6E00CE36AD /* SaveHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveHelper.swift; sourceTree = "<group>"; };
+		CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveHelperProtocol.swift; sourceTree = "<group>"; };
 		D77919509757977EB1315874 /* Pods-MykiLiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MykiLiteUITests.release.xcconfig"; path = "Target Support Files/Pods-MykiLiteUITests/Pods-MykiLiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +201,8 @@
 		46650FE7230693AF0084A95B /* PasswordsView */ = {
 			isa = PBXGroup;
 			children = (
+				CE8CA138235F628600CE36AD /* Components */,
+				CE8CA135235F625500CE36AD /* PasswordViewCell */,
 				46650FEB230693B70084A95B /* PasswordsViewController.swift */,
 				46650FE8230693B70084A95B /* PasswordsView+TableView.swift */,
 				46650FEA230693B70084A95B /* PasswordsViewModel.swift */,
@@ -215,6 +229,8 @@
 				46650FFC230694060084A95B /* UIColor+Extension.swift */,
 				CE8CA129235F4E6F00CE36AD /* Data+Extension.swift */,
 				CE8CA12B235F4E9C00CE36AD /* URLResponse+Extension.swift */,
+				CE8CA13B235F63B200CE36AD /* UIView+Extension.swift */,
+				CE8CA13D235F65A800CE36AD /* Float+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -273,6 +289,7 @@
 		CE8CA121235F4D9100CE36AD /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
+				CE8CA1412360BD4F00CE36AD /* CacheHelper */,
 				CE8CA12F235F4F1B00CE36AD /* Clients */,
 				CE8CA124235F4E1400CE36AD /* DBSDefaultProvider */,
 			);
@@ -320,6 +337,31 @@
 				CE8CA133235F4F4C00CE36AD /* CompanyLogoClientProtocol.swift */,
 			);
 			name = LogoClient;
+			sourceTree = "<group>";
+		};
+		CE8CA135235F625500CE36AD /* PasswordViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CA136235F628000CE36AD /* PasswordViewCell.swift */,
+			);
+			name = PasswordViewCell;
+			sourceTree = "<group>";
+		};
+		CE8CA138235F628600CE36AD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CA139235F629D00CE36AD /* PasswordView.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		CE8CA1412360BD4F00CE36AD /* CacheHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CA1422360BD6E00CE36AD /* SaveHelper.swift */,
+				CE8CA1442360BD8F00CE36AD /* SaveHelperProtocol.swift */,
+			);
+			name = CacheHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -548,15 +590,20 @@
 				46650F742306935E0084A95B /* AppDelegate.swift in Sources */,
 				46650FF9230693E30084A95B /* AddPasswordViewController.swift in Sources */,
 				46650FFD230694060084A95B /* UIColor+Extension.swift in Sources */,
+				CE8CA1452360BD8F00CE36AD /* SaveHelperProtocol.swift in Sources */,
 				CE8CA126235F4E2800CE36AD /* DBSDataProvider.swift in Sources */,
 				46651005230694450084A95B /* FetchRequest.swift in Sources */,
+				CE8CA137235F628000CE36AD /* PasswordViewCell.swift in Sources */,
 				46651009230694580084A95B /* Field.swift in Sources */,
 				46650FEE230693B70084A95B /* PasswordsViewModel.swift in Sources */,
 				46651003230694450084A95B /* PasswordObject.swift in Sources */,
 				CE8CA128235F4E3A00CE36AD /* DBSClient.swift in Sources */,
 				CE8CA12C235F4E9C00CE36AD /* URLResponse+Extension.swift in Sources */,
 				46650FEC230693B70084A95B /* PasswordsView+TableView.swift in Sources */,
+				CE8CA13C235F63B200CE36AD /* UIView+Extension.swift in Sources */,
 				46650FFA230693E30084A95B /* AddPasswordView+TableView.swift in Sources */,
+				CE8CA13E235F65A800CE36AD /* Float+Extension.swift in Sources */,
+				CE8CA13A235F629D00CE36AD /* PasswordView.swift in Sources */,
 				46650FF7230693E30084A95B /* PasswordHeaderCellView.swift in Sources */,
 				46650FF8230693E30084A95B /* DetailCellView.swift in Sources */,
 				4665100A230694580084A95B /* Password.swift in Sources */,
@@ -565,6 +612,7 @@
 				CE8CA12A235F4E6F00CE36AD /* Data+Extension.swift in Sources */,
 				46650FF6230693E30084A95B /* AddPasswordViewModel.swift in Sources */,
 				CE8CA123235F4DBA00CE36AD /* GenericDataProvider.swift in Sources */,
+				CE8CA1432360BD6E00CE36AD /* SaveHelper.swift in Sources */,
 				CE8CA132235F4F3900CE36AD /* CompanyLogoClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

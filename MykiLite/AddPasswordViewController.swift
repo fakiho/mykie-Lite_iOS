@@ -10,15 +10,20 @@ import UIKit
 
 class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
 
-  var viewModel: AddPasswordViewModel!
-  var uuid: String?
+    var viewModel: AddPasswordViewModel!
+    var uuid: String? {
+        didSet {
+            isEditable = (uuid != nil)
+        }
+    }
+    var isEditable: Bool = false
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    viewModel = AddPasswordViewModel()
-    configureNavBar()
-    configureView()
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel = AddPasswordViewModel()
+        configureNavBar()
+        configureView()
+    }
 
   func configureNavBar() {
     self.title = "Add Password"
@@ -42,15 +47,17 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
     
     func getAllFieldValues() -> Password {
         var dict: [String:String] = [:]
-        for i in 1 ..<  viewModel.fields.count {
-            let index = IndexPath(row: i, section: 0)
-            let cell: DetailCellView = tableView.cellForRow(at: index) as! DetailCellView
-            let (key,val) = cell.getFieldText()
-            dict[key] = val
+        for field in viewModel.fields where field.title != .header {
+            print(field.title.getKey())
+            dict[field.title.getKey()] = field.value
         }
         dict["uuid"] = UUID().uuidString.lowercased()
         
         return Password(object: PasswordObject(password: Password(object: dict as NSDictionary)))
+    }
+    
+    func fillData() {
+        
     }
 
   @objc func textFieldChanged(_ textField: UITextField) {
