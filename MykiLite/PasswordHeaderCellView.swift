@@ -37,7 +37,7 @@ class PasswordHeaderCellView: UITableViewCell {
         super.layoutSubviews()
     }
     
-    func setupContent(source: String, client: CompanyLogoClient?, password: Password?) {
+    func setupContent(source: String, client: inout CompanyLogoClient?, password: Password?) {
             client?.getLogo(domain: source, completion: { (image, error) in
                 if(self.isEditable) {
                     DispatchQueue.main.async {
@@ -65,6 +65,20 @@ class PasswordHeaderCellView: UITableViewCell {
         else {
             self.contentView.addSubview(headerSaveView)
             headerSaveView.setFillingConstraints(in: self.contentView)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if isEditable {
+            self.headerEditView.itemImageView.image = nil
+            self.headerEditView.itemBackgroundView.backgroundColor = .darkGray
+            self.headerEditView.titleLabel.text = nil
+            self.headerEditView.emailLabel.text = nil
+        }
+        else {
+            self.headerSaveView.itemImageView.image = nil
+            self.headerSaveView.itemBackgroundView.backgroundColor = .grayG
         }
     }
  
