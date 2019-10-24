@@ -64,11 +64,16 @@ class AddPasswordViewModel {
     }
 
     func prepareFields() {
-        let items: [NSDictionary] = [["title": Fields.header, "type": FieldTypes.header, "secure": false], ["title": Fields.nickName, "type": FieldTypes.text, "secure": false], ["title": Fields.userName, "type": FieldTypes.text, "secure": false], ["title": Fields.password, "type": FieldTypes.password, "secure": true], ["title": Fields.website, "type": FieldTypes.text, "secure": false]]
+        let items: [NSDictionary] = [
+                                    ["title": Fields.header, "type": FieldTypes.header, "secure": false, "isEnabled" : true],
+                                     ["title": Fields.nickName, "type": FieldTypes.text, "secure": false, "isEnabled" : true],
+                                     ["title": Fields.userName, "type": FieldTypes.text, "secure": false, "isEnabled" : true],
+                                     ["title": Fields.password, "type": FieldTypes.password, "secure": true, "isEnabled" : false],
+                                     ["title": Fields.website, "type": FieldTypes.text, "secure": false, "isEnabled" : true]]
 
         for item in items {
-            guard let title = item["title"] as? Fields, let type = item["type"] as? FieldTypes, let isSecure = item["secure"] as? Bool else { continue }
-            fields.append(Field(title: title, type: type, isSecure: isSecure))
+            guard let title = item["title"] as? Fields, let type = item["type"] as? FieldTypes, let isSecure = item["secure"] as? Bool, let isEnabled = item["isEnabled"] as? Bool else { continue }
+            fields.append(Field(title: title, type: type, isSecure: isSecure, isEnabled: isEnabled))
         }
         guard uuid != nil else {
             return

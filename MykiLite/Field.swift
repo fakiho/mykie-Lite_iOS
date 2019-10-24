@@ -9,15 +9,17 @@
 import Foundation
 
 struct Field {
-  var title: Fields
-  var type: FieldTypes
-  var isSecure: Bool
-  var value = ""
+    var title: Fields
+    var type: FieldTypes
+    var isSecure: Bool
+    var isEnabled: Bool
+    var value = ""
 
-  init(title: Fields, type: FieldTypes, isSecure: Bool) {
-    self.title = title
-    self.type = type
-    self.isSecure = isSecure
+    init(title: Fields, type: FieldTypes, isSecure: Bool, isEnabled: Bool) {
+        self.title = title
+        self.type = type
+        self.isSecure = isSecure
+        self.isEnabled = isEnabled
   }
 }
 
