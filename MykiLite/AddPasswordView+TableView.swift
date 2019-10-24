@@ -39,8 +39,8 @@ extension AddPasswordViewController {
     cell.selectionStyle = .none
     cell.clipsToBounds = true
     cell.setupViews(isEditable: isEditable)
-    let sourceUrl = viewModel.fields[indexPath.row].value
-    cell.setupContent(source: sourceUrl, client: client, password: viewModel.editablePassword)
+    let sourceUrl = viewModel.fields[Fields.website.rawValue].value
+    cell.setupContent(source: sourceUrl, client: &client, password: viewModel.editablePassword)
     return cell
   }
 
@@ -56,6 +56,7 @@ extension AddPasswordViewController {
     cell.detailTextField.isSecureTextEntry = isEditable ? false : field.isSecure
     
     cell.detailTextField.text = (field.isSecure && isEditable) ? "Hold to reveal item" : field.value
+    cell.detailTextField.isUserInteractionEnabled = field.isEnabled
     cell.clipsToBounds = true
     cell.selectionStyle = .none
     cell.detailTextField.tintColor = .mykiGreen
