@@ -15,6 +15,8 @@ public enum HTTPMethod: String {
 }
 
 public class GenericClientDataProvider: NSObject, DBSDataProvider {
+    var task: URLSessionDataTask?
+
     public func execute(_ request: URLRequest, completionHandler: ((URLResponse?, Data?, Error?) -> Void)?) {
         guard let completionHandler = completionHandler else {return}
         makeRequest(request, completionHandler: completionHandler)
@@ -24,13 +26,14 @@ public class GenericClientDataProvider: NSObject, DBSDataProvider {
 extension GenericClientDataProvider {
     private func makeRequest(_ request: URLRequest, completionHandler: ((URLResponse?, Data?, Error?) -> Void)? = nil) {
         guard let completionHandler = completionHandler else { return }
+        if task != nil {task?.cancel(); print("cancel")}
         DispatchQueue.global(qos: .background).async {
             var finalRequest = request
             finalRequest.setValue("application/json", forHTTPHeaderField: "Accept")
             finalRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             finalRequest.setValue("Bearer sk_test_XKokBfNWv6FIYuTMg5sLPjhJ", forHTTPHeaderField: "Authorization")
             
-            let task = URLSession.shared.dataTask(with: finalRequest) { data, response, error in
+            self.task = URLSession.shared.dataTask(with: finalRequest) { data, response, error in
                 guard let httpResponse = response as? HTTPURLResponse else {
                     self.createErrorOrSuccessResponse(response: response, data: data, error: error)
                     return
@@ -50,7 +53,7 @@ extension GenericClientDataProvider {
                     self.createErrorOrSuccessResponse(response: httpResponse, data: data, error: error,completionHandler: completionHandler)
                 }
             }
-            task.resume()
+            self.task?.resume()
         }
     }
     
