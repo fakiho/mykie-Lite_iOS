@@ -99,22 +99,25 @@ class DetailCellView: UITableViewCell {
     
     func setupEditMode() {
         if isEditable {
-            setupCopy()
+            setupCopyForPassUser()
             setupLongPress()
         }
     }
     
-    func setupCopy() {
+    func setupCopyForPassUser() {
+        guard let type = fieldType else {return}
+        if type == .userName || type == .password {
         infoBackgroundView.addSubview(copyBtn)
-        copyBtn.rightAnchor(to: infoBackgroundView.rightAnchor, constant: -20)
-        copyBtn.centerYAnchor(to: infoBackgroundView.centerYAnchor)
-        infoBackgroundView.bringSubviewToFront(copyBtn)
-        copyBtn.addTarget(self, action: #selector(copyText), for: .touchUpInside)
+            copyBtn.rightAnchor(to: infoBackgroundView.rightAnchor, constant: -20)
+            copyBtn.centerYAnchor(to: infoBackgroundView.centerYAnchor)
+            infoBackgroundView.bringSubviewToFront(copyBtn)
+            copyBtn.addTarget(self, action: #selector(copyText), for: .touchUpInside)
+        }
     }
     
     func setupLongPress() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(revealItem))
-        self.detailTextField.addGestureRecognizer(longPressRecognizer)
+        self.addGestureRecognizer(longPressRecognizer)
     }
     
     @objc func revealItem() {
