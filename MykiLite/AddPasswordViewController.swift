@@ -31,9 +31,15 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
     }
 
   func configureNavBar() {
-    self.title = "Add Password"
     self.navigationItem.largeTitleDisplayMode = .never
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savePassword))
+    if isEditable {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(saveOrEditPassword))
+        self.title = "Edit Password"
+
+    } else {
+        self.title = "Add Password"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveOrEditPassword))
+    }
   }
 
   func configureView() {
@@ -43,20 +49,35 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
     self.tableView.register(DetailCellView.self, forCellReuseIdentifier: "detailCell")
   }
 
-  @objc func savePassword() {    
-    viewModel.password = getAllFieldValues()
-    guard let password = viewModel.password else {return}
-    database.createOrUpdate(model: password, with: PasswordObject.init)
-    self.navigationController?.popViewController(animated: true)
+  @objc func saveOrEditPassword() {
+    if isEditable {
+        isEditable = false
+        tableView.reloadData()
+        configureNavBar()
+    } else {
+        guard let password = getAllFieldValues() else {
+            return
+        }
+        viewModel.password = password
+        database.createOrUpdate(model: password, with: PasswordObject.init)
+        self.navigationController?.popViewController(animated: true)
+    }
   }
     
-    func getAllFieldValues() -> Password {
+    func getAllFieldValues() -> Password? {
         var dict: [String:String] = [:]
         for field in viewModel.fields where field.title != .header {
-            print(field.title.getKey())
+            if field.title == .nickName, field.value == "" {
+                return nil
+            }
             dict[field.title.getKey()] = field.value
         }
-        dict["uuid"] = UUID().uuidString.lowercased()
+        if let uuid = viewModel.editablePassword?.uuid {
+            dict["uuid"] = uuid
+        } else {
+            dict["uuid"] = UUID().uuidString.lowercased()
+        }
+        
         
         return Password(object: PasswordObject(password: Password(object: dict as NSDictionary)))
     }
@@ -103,7 +124,7 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        if isEditable {
+        if tableFooterView != nil {
             tableFooterView?.removeFromSuperview()
         }
     }
