@@ -14,7 +14,7 @@ class DetailCellView: UITableViewCell {
     var infoBackgroundView = UIView()
     var titleLabel = UILabel()
     var detailTextField = UITextField()
-    var fieldType: Fields = .nickName
+    var fieldType: Fields?
     var isEditable: Bool = false
     var value: String?
     
@@ -84,6 +84,7 @@ class DetailCellView: UITableViewCell {
   }
 
     func getFieldText() -> (String, String) {
+        guard let fieldType = fieldType else {return ("", "") }
         return (fieldType.getKey(), detailTextField.text ?? "")
     }
     
