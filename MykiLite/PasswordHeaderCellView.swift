@@ -78,7 +78,7 @@ class PasswordHeaderCellView: UITableViewCell {
         }
         else {
             self.headerSaveView.itemImageView.image = nil
-            self.headerSaveView.itemBackgroundView.backgroundColor = .grayG
+            self.headerSaveView.itemBackgroundView.backgroundColor = .darkGray
         }
     }
  
