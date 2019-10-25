@@ -27,7 +27,6 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
         client = CompanyLogoClient(dataProvider: GenericClientDataProvider())
         fillData()
         addFooterViewIfEditable()
-       // NotificationCenter.default.removeObserver(self, name: , object: )
     }
 
   func configureNavBar() {
@@ -52,6 +51,7 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
   @objc func saveOrEditPassword() {
     if isEditable {
         isEditable = false
+        viewModel.fields[Fields.password.rawValue].isEnabled = true
         tableView.reloadData()
         configureNavBar()
     } else {
@@ -128,7 +128,4 @@ class AddPasswordViewController: UITableViewController, UITextFieldDelegate {
             tableFooterView?.removeFromSuperview()
         }
     }
-}
-extension NSNotification.Name {
-    public static let UserNameEdited: NSNotification.Name = Notification.Name("on-username-changed")
 }
